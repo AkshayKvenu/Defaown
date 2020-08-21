@@ -1,0 +1,184 @@
+<odoo>
+    <data>
+
+<record model="ir.ui.view" id="view_cmdb_devices_form">
+        <field name="name">info.cmdb.devices.form</field>
+        <field name="model">info.cmdb.devices</field>
+        <field name="arch" type="xml">
+          <form string="Info CMDB Devices">
+          <header>
+          <button name="action_repair" string="To repair" type="object" states="in_use" class="oe_highlight"/>
+          <button name="action_retire" string='Retire'  type="object" states="in_repair" class="oe_highlight"/>
+          
+          <button name='action_in_use' string='Cancel' type="object"  states='in_repair,retired'/>
+          <field name="state" widget="statusbar" readonly='1'/>
+          
+          </header>
+            <sheet>
+                    <div class="oe_button_box" name="button_box" style="weight:100px">
+                    
+	       			<button type="object"
+	                    name="open_applications"
+	                    class="oe_stat_button" icon="fa-refresh">
+	                    <div class="o_field_widget o_stat_info mr4">
+<!-- 	                        <span class="o_stat_text">Applications</span> -->
+                            <field name="applications_count" widget="statinfo" />
+	                    </div>
+<!--                             <field name="applications_count" widget="statinfo" /> -->
+<!-- 	            	<field name="applications_count"/> -->
+	                    
+	                    </button>
+                    
+	       			<button type="object"
+	                    name="open_vm"
+	                    class="oe_stat_button" icon="fa-refresh">
+	                    <div class="o_field_widget o_stat_info mr4">
+<!-- 	                        <span class="o_stat_text">VM</span> -->
+                            <field name="vm_count" widget="statinfo" />
+	                    </div>
+	                    
+	                    </button>
+                    
+	       			<button type="object"
+	                    name="open_processors"
+	                    class="oe_stat_button" icon="fa-refresh">
+	                    <div class="o_field_widget o_stat_info mr4">
+<!-- 	                        <span class="o_stat_text">Processors</span> -->
+                            <field name="processors_count" widget="statinfo" />
+	                    </div>
+	                    
+	                    </button>
+                    
+	       			<button type="object"
+	                    name="open_memory"
+	                    class="oe_stat_button" icon="fa-refresh">
+	                    <div class="o_field_widget o_stat_info mr4">
+<!-- 	                        <span class="o_stat_text">Memory</span> -->
+                            <field name="memory_count" widget="statinfo" />
+	                    </div>
+	                    
+	                    </button>
+                    
+	       			<button type="object"
+	                    name="open_storages"
+	                    class="oe_stat_button" icon="fa-refresh">
+	                    <div class="o_field_widget o_stat_info mr4">
+<!-- 	                        <span class="o_stat_text">Storages</span> -->
+                            <field name="storages_count" widget="statinfo" />
+	                    </div>
+	                    
+	                    </button>
+                    
+	       			<button type="object"
+	                    name="open_sensors"
+	                    class="oe_stat_button" icon="fa-refresh">
+	                    <div class="o_field_widget o_stat_info mr4">
+<!-- 	                        <span class="o_stat_text">Sensors</span> -->
+                            <field name="sensors_count" widget="statinfo" />
+	                    </div>
+	                    
+	                    </button>
+                    
+	       			<button type="object"
+	                    name="open_vlans"
+	                    class="oe_stat_button" icon="fa-refresh">
+	                    <div class="o_field_widget o_stat_info mr4">
+<!-- 	                        <span class="o_stat_text">Vlans</span> -->
+                            <field name="vlans_count" widget="statinfo" />
+	                    </div>
+	                    
+	                    </button>
+                    
+	       			<button type="object"
+	                    name="open_interfaces"
+	                    class="oe_stat_button" icon="fa-refresh">
+	                    <div class="o_field_widget o_stat_info mr4">
+<!-- 	                        <span class="o_stat_text">Interfaces</span> -->
+                            <field name="interfaces_count" widget="statinfo" />
+	                    </div>
+	                    
+	                    </button>
+	                    </div>
+	                    
+	                    
+	                    
+<!--                     <field name="ci_image_medium" widget="image" class="oe_left oe_avatar"/> -->
+<!--                     <div class="oe_title"> -->
+<!--                         <label class="oe_edit_only" for="ci_device_hostname" string="Host Name"/> -->
+<!--                         <h1><field name="ci_device_hostname" placeholder="Host Name"/></h1> -->
+<!--                         <div name="options" groups="base.group_user"> -->
+<!--                             <div> -->
+<!--                                 <field name="ci_device_asset_ok"/> -->
+<!--                                 <label for="ci_device_asset_ok"/> -->
+<!--                             </div> -->
+<!--                         </div> -->
+<!--                     </div> -->
+<!-- 	            	<field name="ci_device_hostname" required='1'/> -->
+<!-- 	            	<field name="ci_image_medium" widget="image" class="oe_left oe_avatar"/> -->
+            <group>
+                    <div class="oe_title">	
+	            	<field name="ci_image_medium" widget="image" class="oe_left oe_avatar" 
+	            			attrs="{'readonly': [('state', '!=', 'in_use')]}"/>
+                        <h1><field name="ci_device_hostname" placeholder="Host Name" attrs="{'readonly': [('state', '!=', 'in_use')]}"/></h1>
+                      
+                    </div>
+                </group>
+            <group>
+	            <group>
+	            	<field name="ci_device_asset_ok" attrs="{'readonly': [('state', '!=', 'in_use')]}"/>
+	            	<field name="ci_device_sys_name" required='1' attrs="{'readonly': [('state', '!=', 'in_use')]}"/>
+	            	<field name="ci_device_class" required='1' attrs="{'readonly': [('state', '!=', 'in_use')]}"/>
+	            </group>
+            </group>
+            <notebook>
+            	<page string="General information" >
+	            <group class='col-6'>
+	            	<field name="ci_device_group_id" attrs="{'readonly': [('state', '!=', 'in_use')]}"/>
+	            	<field name="ci_location_id" attrs="{'readonly': [('state', '!=', 'in_use')]}"/>
+	            	<field name="ci_device_sys_descr" attrs="{'readonly': [('state', '!=', 'in_use')]}"/>
+	            	<field name="ci_device_hardware" attrs="{'readonly': [('state', '!=', 'in_use')]}"/>
+	            </group>
+	            <group class='col-6'>
+	            	<field name="ci_device_os" attrs="{'readonly': [('state', '!=', 'in_use')]}"/>
+	            	<field name="ci_device_version" attrs="{'readonly': [('state', '!=', 'in_use')]}"/>
+	            	<field name="ci_device_serial" attrs="{'readonly': [('state', '!=', 'in_use')]}"/>
+	            	<field name="ci_device_type" attrs="{'readonly': [('state', '!=', 'in_use')]}"/>
+	            </group>
+            	 	            	
+            	</page>
+            	
+            	<page string="Discovery Probe" >
+	            <group class='col-6'>
+	            	<field name="ci_device_last_discovered" attrs="{'readonly': [('state', '!=', 'in_use')]}"/>
+	            	<field name="ci_device_last_pinged" attrs="{'readonly': [('state', '!=', 'in_use')]}"/>
+	            	<field name="ci_device_last_polled" attrs="{'readonly': [('state', '!=', 'in_use')]}"/>
+	            </group>
+            	 	            	
+            	</page>
+            </notebook>
+            </sheet>
+          </form>
+        </field>
+</record>
+
+<record model="ir.ui.view" id="view_cmdb_devices_tree">
+        <field name="name">info.cmdb.devices.tree</field>
+        <field name="model">info.cmdb.devices</field>
+        <field name="arch" type="xml">
+            <tree string="Info CMDB Devices">
+            <field name="ci_device_hostname"/>
+            <field name="ci_device_sys_name"/>
+            </tree>
+        </field>
+</record>
+    
+
+    <record model="ir.actions.act_window" id="action_cmdb_devices">
+        <field name="name">Info CMDB Devices</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">info.cmdb.devices</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    </data>
+</odoo>

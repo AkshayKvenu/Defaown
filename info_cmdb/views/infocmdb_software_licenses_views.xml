@@ -1,0 +1,47 @@
+<odoo>
+    <data>
+
+<record model="ir.ui.view" id="view_cmdb_software_licenses_form">
+        <field name="name">info.cmdb.software.licenses.form</field>
+        <field name="model">info.cmdb.software.licenses</field>
+        <field name="arch" type="xml">
+          <form string="Info CMDB Software Licenses">
+            <sheet>
+            <group>
+	            <group>
+	            	<field name="name" required='1'/>
+	            	<field name="ci_class_id" required='1'/>
+	            	<field name="ci_soft_licenses_business_owener_id"/>
+	            </group>
+	            <group>
+	            	<field name="ci_soft_licenses_description"/>
+	            	<field name="ci_soft_licenses_key"/>
+<!-- 	            	<field name="service_classification" required='1'/> -->
+	            </group>
+            </group>
+            </sheet>
+          </form>
+        </field>
+</record>
+
+<record model="ir.ui.view" id="view_cmdb_software_licenses_tree">
+        <field name="name">info.cmdb.software.licenses.tree</field>
+        <field name="model">info.cmdb.software.licenses</field>
+        <field name="arch" type="xml">
+            <tree string="Info CMDB Software Licenses">
+            <field name="name"/>
+            <field name="ci_class_id"/>
+            </tree>
+        </field>
+</record>
+    
+
+    <record model="ir.actions.act_window" id="action_cmdb_software_licenses">
+        <field name="name">Info CMDB Software Licenses</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">info.cmdb.software.licenses</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    </data>
+</odoo>

@@ -1,0 +1,31 @@
+<odoo>
+    <data>
+    
+<!-- 	CMDB main menu  -->
+	<menuitem name="InfoControl" id="menu_infocontrol_root" sequence="2" />
+	
+<!-- Master Data menu -->
+		<menuitem id="menu_infocontrol_submenu" name="Master Data"
+			parent="menu_infocontrol_root" sequence="1" />
+		
+			<menuitem id="menu_infocontrol_standard" name="Standard" action="action_infocontrol_standard"
+				parent="menu_infocontrol_submenu" sequence="1" />
+				
+			<menuitem id="menu_infocontrol_standard_family" name="Family" action="action_infocontrol_standard_family"
+				parent="menu_infocontrol_submenu" sequence="2" />
+				
+			<menuitem id="menu_infocontrol_control" name="Controls" action="action_infocontrol_control"
+				parent="menu_infocontrol_submenu" sequence="3" />
+   
+	
+<!-- Configuration menu -->
+		<menuitem id="menu_infocontrol_configuration" name="Configuration"
+			parent="menu_infocontrol_root" sequence="1" />
+		
+			<menuitem id="menu_infocontrol_category" name="Category" action="action_infocontrol_category"
+				parent="menu_infocontrol_configuration" sequence="1" />
+		
+			<menuitem id="menu_infocontrol_type" name="Control Type" action="action_infocontrol_type"
+				parent="menu_infocontrol_configuration" sequence="2" />
+    </data>
+</odoo>

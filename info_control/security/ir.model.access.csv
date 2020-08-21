@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_info_control_standard,access_info_control_standard,model_info_control_standard,base.group_user,1,1,1,1
+access_info_control_standard_family,access_info_control_standard_family,model_info_control_standard_family,base.group_user,1,1,1,1
+access_info_control_control,access_info_control_control,model_info_control_control,base.group_user,1,1,1,1
+access_info_control_category,access_info_control_category,model_info_control_category,base.group_user,1,1,1,1
+access_info_control_type,access_info_control_type,model_info_control_type,base.group_user,1,1,1,1 

@@ -1,0 +1,16 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_info_cmdb_devices,access_info_cmdb_devices,model_info_cmdb_devices,base.group_user,1,1,1,1
+access_info_cmdb_classes,access_info_cmdb_classes,model_info_cmdb_classes,base.group_user,1,1,1,1
+access_info_cmdb_applications,access_info_cmdb_applications,model_info_cmdb_applications,base.group_user,1,1,1,1
+access_info_cmdb_group,access_info_cmdb_group,model_info_cmdb_group,base.group_user,1,1,1,1
+access_info_cmdb_software_licenses,access_info_cmdb_software_licenses,model_info_cmdb_software_licenses,base.group_user,1,1,1,1
+access_info_cmdb_business_services,access_info_cmdb_business_services,model_info_cmdb_business_services,base.group_user,1,1,1,1
+access_info_cmdb_relationship_class,access_info_cmdb_relationship_class,model_info_cmdb_relationship_class,base.group_user,1,1,1,1
+access_info_cmdb_relationship_type,access_info_cmdb_relationship_type,model_info_cmdb_relationship_type,base.group_user,1,1,1,1
+access_info_cmdb_vm,access_info_cmdb_vm,model_info_cmdb_vm,base.group_user,1,1,1,1 
+access_info_cmdb_processors,access_info_cmdb_processors,model_info_cmdb_processors,base.group_user,1,1,1,1
+access_info_cmdb_memory,access_info_cmdb_memory,model_info_cmdb_memory,base.group_user,1,1,1,1
+access_info_cmdb_sensors,access_info_cmdb_sensors,model_info_cmdb_sensors,base.group_user,1,1,1,1 
+access_info_cmdb_storages,access_info_cmdb_storages,model_info_cmdb_storages,base.group_user,1,1,1,1 
+access_info_cmdb_vlans,access_info_cmdb_vlans,model_info_cmdb_vlans,base.group_user,1,1,1,1 
+access_info_cmdb_interfaces,access_info_cmdb_interfaces,model_info_cmdb_interfaces,base.group_user,1,1,1,1

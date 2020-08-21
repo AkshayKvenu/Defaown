@@ -1,0 +1,184 @@
+<odoo>
+    <data>
+
+<record model="ir.ui.view" id="view_infocontrol_standard_form">
+        <field name="name">info.control.standard.form</field>
+        <field name="model">info.control.standard</field>
+        <field name="arch" type="xml">
+          <form string="Info Control Standard">
+            <sheet>
+            <group>
+	            <group>
+	            	<field name="name" required='1'/>
+	            	<field name="code" required='1'/>
+	            	<field name="version"/>
+	            </group>
+	            <group>
+	            	<field name="date"/>
+	            	<field name="overview"/>
+	            	<field name="purpose"/>
+	            </group>
+            </group>
+            <notebook>
+            	<page string="Standard Family">
+	            	<field name="family_ids">
+                       <tree string="Standard Family">
+                           <field name="name" required='1'/>
+                           <field name="code" required='1'/>
+                           <field name="brief" required='1'/>
+<!--                            <field name="remaining_value" readonly="1" widget="monetary" string="Residual"/> -->
+<!--                            <field name="move_check" widget="deprec_lines_toggler" attrs="{'invisible': [('parent_state', '!=', 'open')]}"/> -->
+<!--                            <field name="move_posted_check" invisible="1"/> -->
+<!--                            <field name="parent_state" invisible="1"/> -->
+                       </tree>
+                     </field>
+            		
+            	</page>
+            	<page string="Standard Controls">
+	            	<field name="control_ids">
+                       <tree string="Standard Controls">
+                           <field name="name" required='1'/>
+                           <field name="clause_ref" required='1'/>
+                           <field name="clause" required='1'/>
+                           <field name="category_id" required='1' options="{'no_create': True}"/>
+                       </tree>
+                     </field>
+            		
+            	</page>
+            </notebook>
+            </sheet>
+          </form>
+        </field>
+</record>
+
+<record model="ir.ui.view" id="view_infocontrol_standard_tree">
+        <field name="name">info.control.standard.tree</field>
+        <field name="model">info.control.standard</field>
+        <field name="arch" type="xml">
+            <tree string="Info Control Standard">
+            <field name="name"/>
+            <field name="code"/>
+            <field name="version"/>
+            </tree>
+        </field>
+</record>
+    
+
+    <record model="ir.actions.act_window" id="action_infocontrol_standard">
+        <field name="name">Info Control Standard</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">info.control.standard</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+
+<record model="ir.ui.view" id="view_infocontrol_standard_family_form">
+        <field name="name">info.control.standard.family.form</field>
+        <field name="model">info.control.standard.family</field>
+        <field name="arch" type="xml">
+          <form string="Info Control Standard Family">
+            <sheet>
+            <group>
+	            <group>
+	            	<field name="name" required='1'/>
+	            	<field name="code" required='1'/>
+	            	<field name="brief" required='1'/>
+<!-- 	            	<field name="ci_soft_licenses_business_owener_id"/> -->
+	            </group>
+	            <group>
+	            	<field name="purpose"/>
+	            	<field name="scope"/>
+<!-- 	            	<field name="info_control_standard_id"/> -->
+	            </group>
+            </group>
+            </sheet>
+          </form>
+        </field>
+</record>
+
+<record model="ir.ui.view" id="view_infocontrol_standard_family_tree">
+        <field name="name">info.control.standard.family.tree</field>
+        <field name="model">info.control.standard.family</field>
+        <field name="arch" type="xml">
+            <tree string="Info Control Standard Family">
+            <field name="name"/>
+            <field name="code"/>
+            <field name="brief"/>
+            </tree>
+        </field>
+</record>
+    
+
+    <record model="ir.actions.act_window" id="action_infocontrol_standard_family">
+        <field name="name">Info Control Standard Family</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">info.control.standard.family</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+
+<record model="ir.ui.view" id="view_infocontrol_control_form">
+        <field name="name">info.control.control.form</field>
+        <field name="model">info.control.control</field>
+        <field name="arch" type="xml">
+          <form string="Info Control Controls">
+            <sheet>
+            <group>
+	            <group>
+	            	<field name="name" required='1'/>
+	            	<field name="clause_ref" required='1'/>
+	            	<field name="clause" required='1'/>
+	            	<field name="category_id" required='1' options="{'no_create': True}"/>
+	            	<field name="control_ref" />
+<!-- 	            	<field name="info_control_standard_id"/> -->
+	            </group>
+	            <group>
+	            	<field name="category_objective"/>
+	            	<field name="control_document"/>
+	            	<field name="brief"/>
+	            	<field name="control_type_ids" widget="many2many_tags" options="{'no_create': True}"/>
+	            	
+	            </group>
+	            </group>
+		          <group class="col-4">
+	            	<field name="is_impact_confidentiality"/>
+		          </group>
+		          <group class="col-4">
+	            	<field name="is_impact_integrity"/>
+		          </group>
+		          <group class="col-4">
+	            	<field name="is_impact_availability"/>
+		          </group>
+	            <group>
+	            
+	            	<field name="implementation_guide" widget="html"/>
+<!-- 	            	<field name="control_document" required='1'/> -->
+<!-- 	            	<field name="brief"/> -->
+            </group>
+            </sheet>
+          </form>
+        </field>
+</record>
+
+<record model="ir.ui.view" id="view_infocontrol_control_tree">
+        <field name="name">info.control.control.tree</field>
+        <field name="model">info.control.control</field>
+        <field name="arch" type="xml">
+            <tree string="Info Control Controls">
+            <field name="clause_ref"/>
+            <field name="clause"/>
+            </tree>
+        </field>
+</record>
+    
+
+    <record model="ir.actions.act_window" id="action_infocontrol_control">
+        <field name="name">Info Control Controls</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">info.control.control</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    
+
+    </data>
+</odoo>

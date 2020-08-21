@@ -1,0 +1,80 @@
+<odoo>
+    <data>
+
+<record model="ir.ui.view" id="view_infocontrol_category_form">
+        <field name="name">info.control.category.form</field>
+        <field name="model">info.control.category</field>
+        <field name="arch" type="xml">
+          <form string="Info Control category">
+            <sheet>
+            <group>
+	            <group>
+	            	<field name="name" required='1'/>
+	            	<field name="objective" required='1'/>
+<!-- 	            	<field name="ci_soft_licenses_business_owener_id"/> -->
+	            </group>
+	            <group>
+<!-- 	            	<field name="ci_soft_licenses_description"/> -->
+<!-- 	            	<field name="ci_soft_licenses_key"/> -->
+<!-- 	            	<field name="service_classification" required='1'/> -->
+	            </group>
+            </group>
+            </sheet>
+          </form>
+        </field>
+</record>
+
+<record model="ir.ui.view" id="view_infocontrol_category_tree">
+        <field name="name">info.control.category.tree</field>
+        <field name="model">info.control.category</field>
+        <field name="arch" type="xml">
+            <tree string="Info Control Category">
+            <field name="name"/>
+            <field name="objective"/>
+            </tree>
+        </field>
+</record>
+    
+
+    <record model="ir.actions.act_window" id="action_infocontrol_category">
+        <field name="name">Info Control Category</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">info.control.category</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+<record model="ir.ui.view" id="view_infocontrol_type_form">
+        <field name="name">info.control.type.form</field>
+        <field name="model">info.control.type</field>
+        <field name="arch" type="xml">
+          <form string="Info Control Type">
+            <sheet>
+            <group>
+	            <group>
+	            	<field name="name" required='1'/>
+	            </group>
+            </group>
+            </sheet>
+          </form>
+        </field>
+</record>
+
+<record model="ir.ui.view" id="view_infocontrol_type_tree">
+        <field name="name">info.control.type.tree</field>
+        <field name="model">info.control.type</field>
+        <field name="arch" type="xml">
+            <tree string="Info Control Type">
+            <field name="name"/>
+            </tree>
+        </field>
+</record>
+    
+
+    <record model="ir.actions.act_window" id="action_infocontrol_type">
+        <field name="name">Info Control Type</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">info.control.type</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</data>
+</odoo>

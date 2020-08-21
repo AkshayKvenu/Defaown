@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_info_knowledge_knowledge_manager,access_info_knowledge_knowledge_manager,model_info_knowledge_knowledge,knowledge_manager,1,1,1,1
+access_info_knowledge_knowledge,access_info_knowledge_knowledge,model_info_knowledge_knowledge,base.group_user,1,0,0,0
+access_info_knowledge_category,access_info_knowledge_category,model_info_knowledge_category,base.group_user,1,1,1,1 
+access_info_knowledge_base_manager,access_info_knowledge_base_manager,model_info_knowledge_base,knowledge_manager,1,1,1,1 
+access_info_knowledge_base,access_info_knowledge_base,model_info_knowledge_base,base.group_user,1,0,0,0 

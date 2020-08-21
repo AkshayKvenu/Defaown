@@ -1,0 +1,248 @@
+<odoo>
+	<data>
+
+		<record model="ir.ui.view" id="view_inforisk_assessment_form">
+			<field name="name">info.risk.assessment.form</field>
+			<field name="model">info.risk.assessment</field>
+			<field name="arch" type="xml">
+				<form string="Info Risk assessment">
+					<header>
+						<button name="action_done" string="Confirm" type="object"
+							class="oe_highlight" states='draft' />
+						<button name="action_draft" string="Set to draft"
+							type="object" class="oe_highlight" states='done' />
+						<field name="state" widget='statusbar' />
+					</header>
+					<sheet>
+						<div class="oe_button_box" name="button_box"
+							style="height:50px"
+							attrs="{'invisible': [('risk_appetite_id','=',False)]}">
+							<button class="oe_stat_button" string="Appetite"
+								name="open_appetite" type="object" icon="fa-pencil">
+							</button>
+						</div>
+						<group>
+							<group>
+								<field name="name" required='1'
+									attrs="{'readonly': [('state','=','done')]}" />
+								<field name="control_standard_ids" widget="many2many_tags"
+									options="{'no_create': True}"
+									attrs="{'readonly': [('state','=','done')],'required': [('response_name','in',['Amend/Treat','Share/Transfer'])]}" />
+								<field name="risk_appetite_id"
+									attrs="{'readonly': [('state','=','done')]}"
+									domain="[('state', '=', 'approve')]" required='1'
+									options="{'no_create': True}" />
+							</group>
+							<group>
+								<field name="info_asset_class"
+									options="{'no_create': True}" required='1'
+									attrs="{'readonly': [('state','=','done')]}" />
+								<field name="asset_asset_id" options="{'no_create': True}"
+									attrs="{'readonly': [('state','=','done')]}" />
+								<field name="owner_id" options="{'no_create': True}"
+									attrs="{'readonly': [('state','=','done')]}" required='1' />
+							</group>
+							<group>
+								<field name="seperate_threat_vulnerability"
+									attrs="{'readonly': [('state','=','done')]}" />
+								<field name="scenarios_id" options="{'no_create': True}"
+									attrs="{'invisible': [('seperate_threat_vulnerability','!=',False)],
+											'required': [('seperate_threat_vulnerability','=',False)],
+											'readonly': [('state','=','done')]}" />
+								<field name="threat_id" options="{'no_create': True}"
+									attrs="{'invisible': [('seperate_threat_vulnerability','=',False)],
+											'required': [('seperate_threat_vulnerability','!=',False)],
+											'readonly': [('state','=','done')]}" />
+								<field name="vulnerability_id"
+									options="{'no_create': True}"
+									attrs="{'invisible': [('seperate_threat_vulnerability','=',False)],
+											'required': [('seperate_threat_vulnerability','!=',False)],
+											'readonly': [('state','=','done')]}" />
+							</group>
+							<group>
+								<field name="html_view" nolabel="1" readonly="1" />
+							</group>
+						</group>
+						<notebook>
+
+							<page string="Initial Risk">
+								<group>
+									<group string="Initial Likelihood" class='col-5'>
+										<field name="likelihood_score" required='1'
+											attrs="{'readonly': [('state','=','done')]}" />
+										<field name="likelihood_ids" readonly="1">
+											<tree string="likelihood" readonly="1">
+												<field name="name" />
+												<field name="description" />
+											</tree>
+										</field>
+									</group>
+									<group string="Initial Impact" class='col-5'>
+										<field name="impact_score" required='1'
+											attrs="{'readonly': [('state','=','done')]}" />
+										<field name="impact_ids" readonly="1">
+											<tree string="impact" readonly="1">
+												<field name="name" />
+												<field name="description" />
+											</tree>
+										</field>
+									</group>
+								</group>
+								<group>
+
+									<group string="Initial Score" class='col-6'>
+										<field name="initial_risk_score" readonly="1" />
+									</group>
+									<group string="Grid View" class='col-6'>
+										<field name="html_likelihood_view" nolabel="1"
+											readonly="1" />
+									</group>
+								</group>
+							</page>
+
+							<page string="Risk Treatment">
+								<group>
+									<group>
+										<field name="response_id" required='1'
+											options="{'no_create': True}"
+											attrs="{'readonly': [('state','=','done')]}" />
+										<field name="response_name" invisible='1'
+											attrs="{'readonly': [('state','=','done')]}" />
+										<field name="response_description" readonly="1" />
+									</group>
+									<group>
+										<field name="justification" required='1'
+											attrs="{'readonly': [('state','=','done')]}" />
+									</group>
+								</group>
+							</page>
+
+							<page string="Controls"
+								attrs="{'invisible': [('response_name','!=','Amend/Treat')]}">
+								<group>
+									<!-- <field name="control_standard_ids" widget="many2many_tags"/> -->
+									<field name="control_control_ids"
+										attrs="{'required': [('response_name','=','Amend/Treat')],'readonly': [('state','=','done')]}"
+										domain="[('info_control_standard_id', 'in', control_standard_ids)]" />
+								</group>
+							</page>
+
+							<page string="Residual Risk"
+								attrs="{'invisible': [('response_name','not in',['Amend/Treat','Share/Transfer'])]}">
+								<group>
+									<group string="Residual Likelihood" class='col-5'>
+										<field name="res_likelihood_score"
+											attrs="{'required': [('response_name','in',['Amend/Treat','Share/Transfer'])],'readonly': [('state','=','done')]}" />
+										<field name="res_likelihood_ids" readonly="1">
+											<tree string="likelihood" readonly="1">
+												<field name="name" />
+												<field name="description" />
+											</tree>
+										</field>
+									</group>
+									<group string="Residual Impact" class='col-5'>
+										<field name="res_impact_score"
+											attrs="{'required': [('response_name','in',['Amend/Treat','Share/Transfer'])],'readonly': [('state','=','done')]}" />
+										<field name="res_impact_ids" readonly="1">
+											<tree string="impact" readonly="1">
+												<field name="name" />
+												<field name="description" />
+											</tree>
+										</field>
+									</group>
+								</group>
+								<group>
+									<group string="Residual Score" class='col-6'>
+										<field name="residual_risk_score" readonly="1" />
+									</group>
+									<group string="Grid View" class='col-6'>
+										<field name="html_residual_view" nolabel="1"
+											readonly="1" />
+									</group>
+								</group>
+
+							</page>
+						</notebook>
+					</sheet>
+				</form>
+			</field>
+		</record>
+
+		<record model="ir.ui.view" id="view_inforisk_assessment_tree">
+			<field name="name">info.risk.assessment.tree</field>
+			<field name="model">info.risk.assessment</field>
+			<field name="arch" type="xml">
+				<tree string="Info Risk assessment">
+					<field name="name" />
+					<field name="risk_appetite_id" />
+					<field name="info_asset_class" />
+					<field name="owner_id" />
+					<field name="state" />
+					<!-- <field name="control_standard_id" /> -->
+				</tree>
+			</field>
+		</record>
+
+
+		<record model="ir.actions.act_window"
+			id="action_inforisk_assessment">
+			<field name="name">Info Risk assessment</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">info.risk.assessment</field>
+			<field name="view_mode">tree,form</field>
+			<field name="help" type="html">
+				<p class="o_view_nocontent_smiling_face">
+					Nothing to show
+				</p>
+			</field>
+		</record>
+
+		<record model="ir.ui.view" id="view_inforisk_review_form">
+			<field name="name">info.risk.review.form</field>
+			<field name="model">info.risk.review</field>
+			<field name="arch" type="xml">
+				<form string="Info Risk review">
+					<sheet>
+						<div class="oe_title">
+							<label for="name" class="oe_edit_only" />
+							<h1>
+								<field name="name" placeholder="Select Assessment"
+									required='1' />
+							</h1>
+						</div>
+						<group>
+							<group>
+							</group>
+						</group>
+					</sheet>
+				</form>
+			</field>
+		</record>
+
+		<record model="ir.ui.view" id="view_inforisk_review_tree">
+			<field name="name">info.risk.review.tree</field>
+			<field name="model">info.risk.review</field>
+			<field name="arch" type="xml">
+				<tree string="Info Risk review">
+					<field name="name" />
+				</tree>
+			</field>
+		</record>
+
+
+		<record model="ir.actions.act_window"
+			id="action_inforisk_review">
+			<field name="name">Info Risk review</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">info.risk.review</field>
+			<field name="view_mode">tree,form</field>
+			<field name="help" type="html">
+				<p class="o_view_nocontent_smiling_face">
+					Nothing to show
+				</p>
+			</field>
+		</record>
+
+
+	</data>
+</odoo>

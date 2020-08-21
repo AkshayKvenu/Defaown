@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<record id="view_likelihood_wizard" model="ir.ui.view">
+		<field name="name">Likelihood</field>
+		<field name="model">info.risk.wizard</field>
+		<field name="arch" type="xml">
+			<form string="Likelihood">
+				<group>
+					<group>
+
+						<!-- <field name="name" required='1'/> -->
+						<field name="number" required='1' />
+					</group>
+					<field name="likelihood_ids">
+						<tree string="likelihood" create="false" editable="bottom"
+							delete="false">
+							<field name="name" readonly='1' />
+							<field name="description" />
+						</tree>
+					</field>
+				</group>
+
+				<footer>
+					<button name="compute" string="Confirm" type="object"
+						class="btn-primary" />
+					<button string="Cancel" class="btn-default" special="cancel" />
+				</footer>
+			</form>
+		</field>
+	</record>
+
+	<record id="action_view_likelihood_wizard"
+		model="ir.actions.act_window">
+		<field name="name">Likelihood</field>
+		<field name="type">ir.actions.act_window</field>
+		<field name="res_model">info.risk.wizard</field>
+		<field name="view_mode">form</field>
+		<field name="target">new</field>
+	</record>
+
+
+
+	<record id="view_impact_wizard" model="ir.ui.view">
+		<field name="name">Impact</field>
+		<field name="model">info.risk.impact.wizard</field>
+		<field name="arch" type="xml">
+			<form string="Impact">
+				<group>
+					<group>
+
+						<!-- <field name="name" required='1'/> -->
+						<field name="number" required='1' />
+					</group>
+					<field name="Impact_ids">
+						<tree string="Impact" create="false" editable="bottom"
+							delete="false">
+							<field name="name" readonly='1' />
+							<field name="description" />
+						</tree>
+					</field>
+				</group>
+
+				<footer>
+					<button name="compute" string="Confirm" type="object"
+						class="btn-primary" />
+					<button string="Cancel" class="btn-default" special="cancel" />
+				</footer>
+			</form>
+		</field>
+	</record>
+
+	<record id="action_view_impact_wizard"
+		model="ir.actions.act_window">
+		<field name="name">Impact</field>
+		<field name="type">ir.actions.act_window</field>
+		<field name="res_model">info.risk.impact.wizard</field>
+		<field name="view_mode">form</field>
+		<field name="target">new</field>
+	</record>
+
+
+
+	<record id="view_scenario_wizard" model="ir.ui.view">
+		<field name="name">Scenario</field>
+		<field name="model">info.risk.scenario.wizard</field>
+		<field name="arch" type="xml">
+			<form string="scenario">
+				<group>
+					<group>
+
+						<field name="vulnerability_id" required='1' />
+					</group>
+				</group>
+
+				<footer>
+					<button name="compute" string="Confirm" type="object"
+						class="btn-primary" />
+					<button string="Cancel" class="btn-default" special="cancel" />
+				</footer>
+			</form>
+		</field>
+	</record>
+
+	<record id="action_view_scenario_wizard"
+		model="ir.actions.act_window">
+		<field name="name">Scenario</field>
+		<field name="type">ir.actions.act_window</field>
+		<field name="res_model">info.risk.scenario.wizard</field>
+		<field name="view_mode">form</field>
+		<field name="target">new</field>
+	</record>
+
+</odoo>

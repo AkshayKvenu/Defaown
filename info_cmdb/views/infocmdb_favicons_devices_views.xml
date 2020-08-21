@@ -1,0 +1,379 @@
+<odoo>
+    <data>
+
+<record model="ir.ui.view" id="view_cmdb_applications_form">
+        <field name="name">info.cmdb.applications.form</field>
+        <field name="model">info.cmdb.applications</field>
+        <field name="arch" type="xml">
+          <form string="Info CMDB Applications">
+            <sheet>
+            <group>
+	            <group>
+	            	<field name="ci_device_id" readonly='1'/>
+	            	<field name="ci_application_id" required='1'/>
+<!-- 	            	<field name="ci_application_class"/> -->
+	            </group>
+	            <group>
+	            	<field name="ci_application_type"/>
+	            	<field name="ci_application_state"/>
+	            	<field name="ci_application_status"/>
+	            	<field name="ci_application_instance"/>
+	            </group>
+            </group>
+            </sheet>
+          </form>
+        </field>
+</record>
+
+<record model="ir.ui.view" id="view_cmdb_applications_tree">
+        <field name="name">info.cmdb.applications.tree</field>
+        <field name="model">info.cmdb.applications</field>
+        <field name="arch" type="xml">
+            <tree string="Info CMDB Applications">
+            <field name="ci_device_id"/>
+            <field name="ci_application_id"/>
+<!--             <field name="ci_application_class"/> -->
+            <field name="ci_application_type"/>
+            </tree>
+        </field>
+</record>
+    
+
+    <record model="ir.actions.act_window" id="action_cmdb_applications">
+        <field name="name">Info CMDB Applications</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">info.cmdb.applications</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+
+
+<record model="ir.ui.view" id="view_cmdb_vm_form">
+        <field name="name">info.cmdb.vm.form</field>
+        <field name="model">info.cmdb.vm</field>
+        <field name="arch" type="xml">
+          <form string="Info CMDB VM">
+            <sheet>
+            <group>
+	            <group>
+	            	<field name="ci_device_id" readonly='1'/>
+	            	<field name="ci_vm_id" required='1'/>
+	            	<field name="ci_vm_cpu"/>
+	            	<field name="ci_vm_memory_size"/>
+	            </group>
+	            <group>
+	            	<field name="ci_vm_type"/>
+	            	<field name="ci_vm_display_name"/>
+	            	<field name="ci_vm_guest_os"/>
+<!-- 	            	<field name="ci_application_instance"/> -->
+	            </group>
+            </group>
+            </sheet>
+          </form>
+        </field>
+</record>
+
+<record model="ir.ui.view" id="view_cmdb_vm_tree">
+        <field name="name">info.cmdb.vm.tree</field>
+        <field name="model">info.cmdb.vm</field>
+        <field name="arch" type="xml">
+            <tree string="Info CMDB VM">
+            <field name="ci_device_id"/>
+            <field name="ci_vm_id"/>
+            <field name="ci_vm_cpu"/>
+            <field name="ci_vm_memory_size"/>
+            </tree>
+        </field>
+</record>
+    
+
+    <record model="ir.actions.act_window" id="action_cmdb_vm">
+        <field name="name">Info CMDB VM</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">info.cmdb.vm</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+
+<record model="ir.ui.view" id="view_cmdb_processors_form">
+        <field name="name">info.cmdb.processors.form</field>
+        <field name="model">info.cmdb.processors</field>
+        <field name="arch" type="xml">
+          <form string="Info CMDB Processors">
+            <sheet>
+            <group>
+	            <group>
+	            	<field name="ci_device_id" readonly='1'/>
+	            	<field name="ci_processors_id" required='1'/>
+	            </group>
+	            <group>
+	            	<field name="ci_processors_index"/>
+	            	<field name="ci_processors_descr"/>
+<!-- 	            	<field name="ci_application_instance"/> -->
+	            </group>
+            </group>
+            </sheet>
+          </form>
+        </field>
+</record>
+
+<record model="ir.ui.view" id="view_cmdb_processors_tree">
+        <field name="name">info.cmdb.processors.tree</field>
+        <field name="model">info.cmdb.processors</field>
+        <field name="arch" type="xml">
+            <tree string="Info CMDB Processors">
+            <field name="ci_device_id"/>
+            <field name="ci_processors_id"/>
+            <field name="ci_processors_index"/>
+            <field name="ci_processors_descr"/>
+            </tree>
+        </field>
+</record>
+    
+
+    <record model="ir.actions.act_window" id="action_cmdb_processors">
+        <field name="name">Info CMDB Processors</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">info.cmdb.processors</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+
+<record model="ir.ui.view" id="view_cmdb_memory_form">
+        <field name="name">info.cmdb.memory.form</field>
+        <field name="model">info.cmdb.memory</field>
+        <field name="arch" type="xml">
+          <form string="Info CMDB memory">
+            <sheet>
+            <group>
+	            <group>
+	            	<field name="ci_device_id" readonly='1'/>
+	            	<field name="ci_memory_id" required='1'/>
+	            </group>
+	            <group>
+	            	<field name="ci_mempool_index"/>
+	            	<field name="ci_mempool_descr"/>
+	            	<field name="ci_mempool_total"/>
+	            </group>
+            </group>
+            </sheet>
+          </form>
+        </field>
+</record>
+
+<record model="ir.ui.view" id="view_cmdb_memory_tree">
+        <field name="name">info.cmdb.memory.tree</field>
+        <field name="model">info.cmdb.memory</field>
+        <field name="arch" type="xml">
+            <tree string="Info CMDB memory">
+            <field name="ci_device_id"/>
+            <field name="ci_memory_id"/>
+            <field name="ci_mempool_index"/>
+            <field name="ci_mempool_descr"/>
+            </tree>
+        </field>
+</record>
+    
+
+    <record model="ir.actions.act_window" id="action_cmdb_memory">
+        <field name="name">Info CMDB Memory</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">info.cmdb.memory</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    
+
+
+
+<record model="ir.ui.view" id="view_cmdb_storages_form">
+        <field name="name">info.cmdb.storages.form</field>
+        <field name="model">info.cmdb.storages</field>
+        <field name="arch" type="xml">
+          <form string="Info CMDB storages">
+            <sheet>
+            <group>
+	            <group>
+	            	<field name="ci_device_id" readonly='1'/>
+	            	<field name="ci_storages_id" required='1'/>
+	            </group>
+	            <group>
+	            	<field name="ci_storages_index"/>
+	            	<field name="ci_storages_type"/>
+	            	<field name="ci_storages_descr"/>
+	            	<field name="ci_storages_size"/>
+	            </group>
+            </group>
+            </sheet>
+          </form>
+        </field>
+</record>
+
+<record model="ir.ui.view" id="view_cmdb_storages_tree">
+        <field name="name">info.cmdb.storages.tree</field>
+        <field name="model">info.cmdb.storages</field>
+        <field name="arch" type="xml">
+            <tree string="Info CMDB storages">
+            <field name="ci_device_id"/>
+            <field name="ci_storages_id"/>
+            <field name="ci_storages_index"/>
+            <field name="ci_storages_type"/>
+            <field name="ci_storages_descr"/>
+            </tree>
+        </field>
+</record>
+    
+
+    <record model="ir.actions.act_window" id="action_cmdb_storages">
+        <field name="name">Info CMDB storages</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">info.cmdb.storages</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    
+
+    
+
+
+
+<record model="ir.ui.view" id="view_cmdb_sensors_form">
+        <field name="name">info.cmdb.sensors.form</field>
+        <field name="model">info.cmdb.sensors</field>
+        <field name="arch" type="xml">
+          <form string="Info CMDB sensors">
+            <sheet>
+            <group>
+	            <group>
+	            	<field name="ci_device_id" readonly='1'/>
+	            	<field name="ci_sensors_id" required='1'/>
+	            </group>
+	            <group>
+	            	<field name="ci_sensors_class"/>
+	            	<field name="ci_sensors_index"/>
+	            	<field name="ci_sensors_type"/>
+	            </group>
+            </group>
+            </sheet>
+          </form>
+        </field>
+</record>
+
+<record model="ir.ui.view" id="view_cmdb_sensors_tree">
+        <field name="name">info.cmdb.sensors.tree</field>
+        <field name="model">info.cmdb.sensors</field>
+        <field name="arch" type="xml">
+            <tree string="Info CMDB sensors">
+            <field name="ci_device_id"/>
+            <field name="ci_sensors_id"/>
+            <field name="ci_sensors_class"/>
+            <field name="ci_sensors_index"/>
+            <field name="ci_sensors_type"/>
+            </tree>
+        </field>
+</record>
+    
+
+    <record model="ir.actions.act_window" id="action_cmdb_sensors">
+        <field name="name">Info CMDB sensors</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">info.cmdb.sensors</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    
+
+
+<record model="ir.ui.view" id="view_cmdb_vlans_form">
+        <field name="name">info.cmdb.vlans.form</field>
+        <field name="model">info.cmdb.vlans</field>
+        <field name="arch" type="xml">
+          <form string="Info CMDB vlans">
+            <sheet>
+            <group>
+	            <group>
+	            	<field name="ci_device_id" readonly='1'/>
+	            	<field name="ci_vlans_id" required='1'/>
+	            </group>
+	            <group>
+	            	<field name="ci_vlans_vlan"/>
+	            	<field name="ci_vlans_domain"/>
+	            	<field name="ci_vlans_name"/>
+	            	<field name="ci_vlans_type"/>
+	            </group>
+            </group>
+            </sheet>
+          </form>
+        </field>
+</record>
+
+<record model="ir.ui.view" id="view_cmdb_vlans_tree">
+        <field name="name">info.cmdb.vlans.tree</field>
+        <field name="model">info.cmdb.vlans</field>
+        <field name="arch" type="xml">
+            <tree string="Info CMDB vlans">
+            <field name="ci_device_id"/>
+            <field name="ci_vlans_id"/>
+            <field name="ci_vlans_vlan"/>
+            <field name="ci_vlans_domain"/>
+            <field name="ci_vlans_name"/>
+            </tree>
+        </field>
+</record>
+    
+
+    <record model="ir.actions.act_window" id="action_cmdb_vlans">
+        <field name="name">Info CMDB vlans</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">info.cmdb.vlans</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    
+    
+
+
+<record model="ir.ui.view" id="view_cmdb_interfaces_form">
+        <field name="name">info.cmdb.interfaces.form</field>
+        <field name="model">info.cmdb.interfaces</field>
+        <field name="arch" type="xml">
+          <form string="Info CMDB interfaces">
+            <sheet>
+            <group>
+	            <group>
+	            	<field name="ci_device_id" readonly='1'/>
+	            	<field name="ci_interfaces_id" required='1'/>
+	            	<field name="ci_interfaces_index"/>
+	            </group>
+	            <group>
+	            	<field name="ci_interfaces_name"/>
+	            	<field name="ci_interfaces_descr"/>
+	            	<field name="ci_interfaces_type"/>
+	            	<field name="ci_interfaces_phys_address"/>
+	            </group>
+            </group>
+            </sheet>
+          </form>
+        </field>
+</record>
+
+<record model="ir.ui.view" id="view_cmdb_interfaces_tree">
+        <field name="name">info.cmdb.interfaces.tree</field>
+        <field name="model">info.cmdb.interfaces</field>
+        <field name="arch" type="xml">
+            <tree string="Info CMDB interfaces">
+            <field name="ci_device_id"/>
+            <field name="ci_interfaces_id"/>
+            <field name="ci_interfaces_index"/>
+            <field name="ci_interfaces_name"/>
+            <field name="ci_interfaces_descr"/>
+            </tree>
+        </field>
+</record>
+    
+
+    <record model="ir.actions.act_window" id="action_cmdb_interfaces">
+        <field name="name">Info CMDB interfaces</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">info.cmdb.interfaces</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    
+    </data>
+</odoo>

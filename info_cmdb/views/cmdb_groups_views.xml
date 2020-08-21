@@ -1,0 +1,45 @@
+<odoo>
+    <data>
+
+<record model="ir.ui.view" id="view_cmdb_group_form">
+        <field name="name">info.cmdb.group.form</field>
+        <field name="model">info.cmdb.group</field>
+        <field name="arch" type="xml">
+          <form string="Info CMDB Group">
+            <sheet>
+            <group>
+	            <group>
+	            	<field name="group_name" required='1'/>
+	            	<field name="group_type"/>
+	            </group>
+	            <group>
+<!-- 	            	<field name="ci_class" required='1'/> -->
+	            	<field name="configuration_item_id" required='1'/>
+	            </group>
+            </group>
+            </sheet>
+          </form>
+        </field>
+</record>
+
+<record model="ir.ui.view" id="view_cmdb_group_tree">
+        <field name="name">info.cmdb.group.tree</field>
+        <field name="model">info.cmdb.group</field>
+        <field name="arch" type="xml">
+            <tree string="Info CMDB Group">
+            <field name="group_name"/>
+            <field name="group_type"/>
+            </tree>
+        </field>
+</record>
+    
+
+    <record model="ir.actions.act_window" id="action_cmdb_group">
+        <field name="name">Info CMDB Group</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">info.cmdb.group</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    </data>
+</odoo>

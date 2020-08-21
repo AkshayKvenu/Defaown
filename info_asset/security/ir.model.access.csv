@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_account_asset_group,access_account_asset_group,model_account_asset_group,base.group_user,1,1,1,1
+access_account_asset_classification,access_account_asset_classification,model_account_asset_classification,base.group_user,1,1,1,1
+access_account_asset_cia_category,access_account_asset_cia_category,model_account_asset_cia_category,base.group_user,1,1,1,1
+access_account_asset_cia_impact,access_account_asset_cia_impact,model_account_asset_cia_impact,base.group_user,1,1,1,1 

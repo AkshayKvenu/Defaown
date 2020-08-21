@@ -1,0 +1,46 @@
+<odoo>
+    <data>
+
+<record model="ir.ui.view" id="view_cmdb_business_services_form">
+        <field name="name">info.cmdb.business.services.form</field>
+        <field name="model">info.cmdb.business.services</field>
+        <field name="arch" type="xml">
+          <form string="Info CMDB Business Services">
+            <sheet>
+            <group>
+	            <group>
+	            	<field name="name" required='1'/>
+	            	<field name="ci_business_services_class_id"/>
+	            </group>
+	            <group>
+	            	<field name="business_critical" required='1'/>
+	            	<field name="used_for" required='1'/>
+	            	<field name="service_classification" required='1'/>
+	            </group>
+            </group>
+            </sheet>
+          </form>
+        </field>
+</record>
+
+<record model="ir.ui.view" id="view_cmdb_business_services_tree">
+        <field name="name">info.cmdb.business.services.tree</field>
+        <field name="model">info.cmdb.business.services</field>
+        <field name="arch" type="xml">
+            <tree string="Info CMDB Business Services">
+            <field name="name"/>
+            <field name="ci_business_services_class_id"/>
+            </tree>
+        </field>
+</record>
+    
+
+    <record model="ir.actions.act_window" id="action_cmdb_business_services">
+        <field name="name">Info CMDB Business Services</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">info.cmdb.business.services</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    </data>
+</odoo>

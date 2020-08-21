@@ -1,0 +1,55 @@
+<odoo>
+    <data>
+ 
+    
+<record model="ir.ui.view" id="view_account_asset_cia_category_form">
+        <field name="name">account.asset.cia.category.form</field>
+        <field name="model">account.asset.cia.category</field>
+        <field name="arch" type="xml">
+          <form string="Asset Cia Category">
+            <sheet>
+             <div class="oe_title">
+             	 <label for="name"  class="oe_edit_only"/>
+                 <h1>
+                     <field name="name" required='1'/>
+                 </h1>
+             </div>
+             
+            <group>
+	            <group>
+	            	<field name="info_asset_cia_confidentiality_id" options="{'no_create': True}" required='1' />
+	            	<field name="info_asset_cia_integrity_id" options="{'no_create': True}" required='1' />
+	            	<field name="info_asset_cia_availability_id" options="{'no_create': True}" required='1' />
+	            </group>
+	            <group>
+	            	<field name="info_asset_cia_total_value" readonly='1'/>
+	            </group>
+            </group>
+            </sheet>
+          </form>
+        </field>
+</record>
+
+<record model="ir.ui.view" id="view_account_asset_cia_category_tree">
+        <field name="name">account.asset.cia.category.tree</field>
+        <field name="model">account.asset.cia.category</field>
+        <field name="arch" type="xml">
+            <tree string="Asset Cia Category">
+            <field name="name"/>
+            <field name="info_asset_cia_confidentiality_id"/>
+           	<field name="info_asset_cia_total_value"/>
+            </tree>
+        </field>
+</record>
+    
+
+    <record model="ir.actions.act_window" id="action_account_asset_asset_cia_category_form">
+        <field name="name">Asset Cia Category</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">account.asset.cia.category</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+       
+    
+    </data>
+</odoo>

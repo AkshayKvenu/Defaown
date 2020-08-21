@@ -1,0 +1,62 @@
+<odoo>
+    <data>
+    
+
+    <record model="ir.actions.act_window" id="action_account_asset_asset_devices_form_id">
+        <field name="name">Devices</field>
+        <field name="res_model">account.asset.asset</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('info_asset_class', '=', 'devices')]</field>
+		<field name="context">{'default_info_asset_class': 'devices'}</field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_account_asset_asset_software_form">
+        <field name="name">Software Licenses</field>
+        <field name="res_model">account.asset.asset</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('info_asset_class', '=', 'software')]</field>
+		<field name="context">{'default_info_asset_class': 'software'}</field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_account_asset_asset_site_form">
+        <field name="name">Site</field>
+        <field name="res_model">account.asset.asset</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('info_asset_class', '=', 'site')]</field>
+		<field name="context">{'default_info_asset_class': 'site'}</field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_account_asset_asset_department_form">
+        <field name="name">Department</field>
+        <field name="res_model">account.asset.asset</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('info_asset_class', '=', 'department')]</field>
+		<field name="context">{'default_info_asset_class': 'department'}</field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_account_asset_asset_employee_form">
+        <field name="name">Employee</field>
+        <field name="res_model">account.asset.asset</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('info_asset_class', '=', 'employee')]</field>
+		<field name="context">{'default_info_asset_class': 'employee'}</field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_account_asset_asset_business_form">
+        <field name="name">Business Services</field>
+        <field name="res_model">account.asset.asset</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('info_asset_class', '=', 'business')]</field>
+		<field name="context">{'default_info_asset_class': 'business'}</field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_account_asset_asset_information_form">
+        <field name="name">Information</field>
+        <field name="res_model">account.asset.asset</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('info_asset_class', '=', 'information')]</field>
+		<field name="context">{'default_info_asset_class': 'information'}</field>
+    </record>
+   
+    </data>
+</odoo>

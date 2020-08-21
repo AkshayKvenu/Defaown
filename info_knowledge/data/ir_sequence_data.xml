@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+
+        <!-- Sequences for Knowldedge Articles -->
+        <record id="seq_info_knowledge" model="ir.sequence">
+            <field name="name">Info Knowledge</field>
+            <field name="code">info.knowledge.knowledge</field>
+            <field name="prefix">KA-</field>
+            <field name="padding">4</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+        <!-- Sequences for Knowldedge Base -->
+        <record id="seq_info_base" model="ir.sequence">
+            <field name="name">Info Knowledge</field>
+            <field name="code">info.knowledge.base</field>
+            <field name="prefix">KB-</field>
+            <field name="padding">4</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+    </data>
+</odoo>

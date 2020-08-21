@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<!-- ONBOARDING STEPS -->
+	<template id="info_risk_layout_step">
+		<t t-call="base.onboarding_step">
+			<t t-set="title">Set Likelihood</t>
+			<t t-set="description">likelihood can be set from here.</t>
+			<t t-set="done_icon" t-value="'fa-star'" />
+			<t t-set="done_text">Looks great!</t>
+			<t t-if="state.get('sale_quotation_onboarding_state') != 'done'"
+				t-set="btn_text">Set</t>
+			<t t-set="model" t-value="'info.risk.likelihood'" />
+			<t t-set="method" t-value="'action_open_base_document_wizard'" />
+			<t t-set="state"
+				t-value="state.get('sale_quotation_onboarding_state')" />
+		</t>
+	</template>
+
+	<!-- ONBOARDING PANEL -->
+	<template id="info_risk_onboarding_panel"
+		name="info.risk.onboarding.panel">
+		<t t-call="base.onboarding_container">
+			<t t-set="classes" t-value="'o_onboarding_violet'" />
+			<t t-set="bg_image"
+				t-value="'/info_risk/static/img/sale_quotation_onboarding_bg.jpg'" />
+			<t t-set="close_method"
+				t-value="'action_close_sale_quotation_onboarding'" />
+			<t t-set="close_model" t-value="'res.company'" />
+			<!-- <t t-call="base.onboarding_company_step" name="company_step" /> -->
+			<t t-call="info_risk.info_risk_layout_step"
+				name="info_risk_layout_step" />
+			<!-- <t t-call="info_risk.sale_onboarding_order_confirmation_step" name="payment_acquirer_step" 
+				/> -->
+			<!-- <t t-call="info_risk.sale_onboarding_sample_quotation_step" name="sample_quotation_step" 
+				/> -->
+		</t>
+	</template>
+	<!-- ONBOARDING STEPS -->
+	<template id="info_risk_layout_step_impact">
+		<t t-call="base.onboarding_step">
+			<t t-set="title">Set Impact</t>
+			<t t-set="description">Impact can be set from here.</t>
+			<t t-set="done_icon" t-value="'fa-star'" />
+			<t t-set="done_text">Looks great!</t>
+			<t t-if="state.get('onboarding_state_impact') != 'done'"
+				t-set="btn_text">Set</t>
+			<t t-set="model" t-value="'info.risk.impact'" />
+			<t t-set="method" t-value="'action_open_base_document_wizard'" />
+			<t t-set="state" t-value="state.get('onboarding_state_impact')" />
+		</t>
+	</template>
+
+	<!-- ONBOARDING PANEL -->
+	<template id="info_risk_onboarding_panel_impact"
+		name="info.risk.impact.onboarding.panel">
+		<t t-call="base.onboarding_container">
+			<t t-set="classes" t-value="'o_onboarding_violet'" />
+			<t t-set="bg_image"
+				t-value="'/info_risk/static/img/sale_quotation_onboarding_bg.jpg'" />
+			<t t-set="close_method" t-value="'action_close_impact_onboarding'" />
+			<t t-set="close_model" t-value="'res.company'" />
+			<!-- <t t-call="base.onboarding_company_step" name="company_step" /> -->
+			<t t-call="info_risk.info_risk_layout_step_impact"
+				name="info_risk_layout_step_impact" />
+			<!-- <t t-call="info_risk.sale_onboarding_order_confirmation_step" name="payment_acquirer_step" 
+				/> -->
+			<!-- <t t-call="info_risk.sale_onboarding_sample_quotation_step" name="sample_quotation_step" 
+				/> -->
+		</t>
+	</template>
+	<!-- ONBOARDING STEPS -->
+	<template id="info_risk_layout_step_scenarios">
+		<t t-call="base.onboarding_step">
+			<t t-set="title">Set Scenarios</t>
+			<t t-set="description">Scenarios can be set from here.</t>
+			<t t-set="done_icon" t-value="'fa-star'" />
+			<t t-set="done_text">Looks great!</t>
+			<t t-if="state.get('onboarding_state_scenarios') != 'done'"
+				t-set="btn_text">Set</t>
+			<t t-set="model" t-value="'info.risk.scenarios'" />
+			<t t-set="method" t-value="'action_open_base_document_wizard'" />
+			<t t-set="state" t-value="state.get('onboarding_state_scenarios')" />
+		</t>
+	</template>
+
+	<!-- ONBOARDING PANEL -->
+	<template id="info_risk_onboarding_panel_scenarios"
+		name="info.risk.scenarios.onboarding.panel">
+		<t t-call="base.onboarding_container">
+			<t t-set="classes" t-value="'o_onboarding_violet'" />
+			<t t-set="bg_image"
+				t-value="'/info_risk/static/img/sale_quotation_onboarding_bg.jpg'" />
+			<t t-set="close_method"
+				t-value="'action_close_scenarios_onboarding'" />
+			<t t-set="close_model" t-value="'res.company'" />
+			<!-- <t t-call="base.onboarding_company_step" name="company_step" /> -->
+			<t t-call="info_risk.info_risk_layout_step_scenarios"
+				name="info_risk_layout_step_scenarios" />
+			<!-- <t t-call="info_risk.sale_onboarding_order_confirmation_step" name="payment_acquirer_step" 
+				/> -->
+			<!-- <t t-call="info_risk.sale_onboarding_sample_quotation_step" name="sample_quotation_step" 
+				/> -->
+		</t>
+	</template>
+
+</odoo>

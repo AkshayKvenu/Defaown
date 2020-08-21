@@ -1,0 +1,66 @@
+<odoo>
+  <data>
+<!-- 	CMDB main menu  -->
+	<menuitem name="InfoCMDB" id="menu_infocmdb_root" sequence="2" />
+	
+<!-- CMDB sub menu -->
+	<menuitem id="menu_infocmdb_submenu" name="CMDB"
+		parent="menu_infocmdb_root" sequence="1" />
+   
+		<!--     IT        -->
+		<menuitem id="menu_infocmdb_it" name="IT"
+		parent="menu_infocmdb_submenu" sequence="1" />
+		
+			<menuitem id="menu_infocmdb_devices" name="Devices" action="action_cmdb_devices"
+			parent="menu_infocmdb_it" sequence="1" />
+		
+			<menuitem id="menu_infocmdb_software_licenses" name="Software Licenses" action="action_cmdb_software_licenses"
+			parent="menu_infocmdb_it" sequence="2" />
+		
+<!-- 			<menuitem id="menu_infocmdb_appliction" name="Appliction Licenses" action="action_cmdb_applications" -->
+<!-- 			parent="menu_infocmdb_it" sequence="3" /> -->
+		
+		
+		<!--     NON-IT        -->
+		<menuitem id="menu_infocmdb_non_it" name="Non-IT"
+		parent="menu_infocmdb_submenu" sequence="2" />
+		
+			<menuitem id="menu_infocmdb_company" name="Company" action="base.action_res_company_form"
+			parent="menu_infocmdb_non_it" sequence="1" />
+		
+			<menuitem id="menu_infocmdb_site" name="Site" action="stock.action_location_form"
+			parent="menu_infocmdb_non_it" sequence="2" />
+		
+			<menuitem id="menu_infocmdb_department" name="Department" action="hr.open_module_tree_department"
+			parent="menu_infocmdb_non_it" sequence="3" />
+		
+			<menuitem id="menu_infocmdb_employee" name="Employee" action="hr.open_view_employee_list_my"
+			parent="menu_infocmdb_non_it" sequence="4" />
+		
+			<menuitem id="menu_infocmdb_resource" name="Working Schedule" action="resource.action_resource_calendar_form"
+			parent="menu_infocmdb_non_it" sequence="5" />
+		
+			<menuitem id="menu_infocmdb_business_services" name="Business Services" action="action_cmdb_business_services"
+			parent="menu_infocmdb_non_it" sequence="7" />
+		
+		
+<!-- Configuration -->
+	<menuitem id="menu_infocmdb_config_settings" name="Configuration"
+		parent="menu_infocmdb_root" sequence="4" />
+		
+		<menuitem id="menu_infocmdb_group" name="Groups" action="action_cmdb_group"
+		parent="menu_infocmdb_config_settings" sequence="1" />
+		
+		<menuitem id="menu_infocmdb_relationship_class" name="Relationship Class" action="action_cmdb_relationship_class"
+		parent="menu_infocmdb_config_settings" sequence="3" />
+		
+		<menuitem id="menu_infocmdb_relationship_types" name="Relationship Types" action="action_cmdb_relationship_types"
+		parent="menu_infocmdb_config_settings" sequence="4" />
+		
+		<menuitem id="menu_infocmdb_classes" name="CMDB Class Category" action="action_cmdb_classes"
+		parent="menu_infocmdb_config_settings" sequence="5" />
+		
+			
+		
+  </data>
+</odoo>

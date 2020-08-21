@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<!-- 	Asset main menu  -->
+	<menuitem name="InfoAsset" id="menu_infoasset_root" sequence="1" />
+	
+<!-- 	Asset classes  -->
+		
+	<menuitem id="menu_infoasset_classes" name="Asset Classes" parent="menu_infoasset_root"	
+		sequence="1" />
+		
+		<!--     IT        -->
+		<menuitem id="menu_infoasset_it" name="IT"
+		parent="menu_infoasset_classes" sequence="1" />
+			<menuitem id="menu_infoasset_devices" name="Devices" action="action_account_asset_asset_devices_form_id"
+			parent="menu_infoasset_it" sequence="1" />
+			<menuitem id="menu_infoasset_software" name="Software Licenses" action="action_account_asset_asset_software_form"
+			parent="menu_infoasset_it" sequence="2" />
+			
+		<!--     NON-IT        -->
+		<menuitem id="menu_infoasset_non_it" name="Non-IT"
+		parent="menu_infoasset_classes" sequence="2" />
+			<menuitem id="menu_infoasset_site" name="Site" action="action_account_asset_asset_site_form"
+			parent="menu_infoasset_non_it" sequence="1" />
+			<menuitem id="menu_infoasset_department" name="Department" action="action_account_asset_asset_department_form"
+			parent="menu_infoasset_non_it" sequence="2" />
+			<menuitem id="menu_infoasset_employee" name="Employee" action="action_account_asset_asset_employee_form"
+			parent="menu_infoasset_non_it" sequence="3" />
+			<menuitem id="menu_infoasset_business" name="Business Services" action="action_account_asset_asset_business_form"
+			parent="menu_infoasset_non_it" sequence="4" />
+			<menuitem id="menu_infoasset_information" name="Information" action="action_account_asset_asset_information_form"
+			parent="menu_infoasset_non_it" sequence="5" />
+			
+			
+			
+		
+<!-- Configuration -->
+	<menuitem id="menu_infoasset_config_settings" name="Configuration"
+		parent="menu_infoasset_root" sequence="4" />
+		
+			<menuitem id="menu_infoasset_group" name="Asset Groups" action="action_account_asset_group"
+			parent="menu_infoasset_config_settings" sequence="1" />
+			
+			<menuitem id="menu_infoasset_classification" name="Asset Classification" action="action_account_asset_classification"
+			parent="menu_infoasset_config_settings" sequence="2" />
+		
+			<menuitem id="menu_infoasset_cia_impact" name="Asset Impact Ratings" action="action_account_asset_asset_cia_impact_form"
+			parent="menu_infoasset_config_settings" sequence="3" />
+		
+			<menuitem id="menu_infoasset_account_category" name="Asset Finance Category" action="om_account_asset.action_account_asset_asset_list_normal_purchase"
+			parent="menu_infoasset_config_settings" sequence="4" />
+		
+			<menuitem id="menu_infoasset_cia_category" name="Asset CIA Category" action="action_account_asset_asset_cia_category_form"
+			parent="menu_infoasset_config_settings" sequence="5" />
+		
+		
+		
+</odoo>

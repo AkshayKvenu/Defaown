@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="mrp_production_form_view_inh" model="ir.ui.view">
+        <field name="name">mrp production inh test</field>
+        <field name="model">mrp.production</field>
+        <field name="inherit_id" ref="mrp.mrp_production_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+            	<page string="Test">
+            		<field name="risk_criteria_ids">
+            			<tree editable="bottom">
+            				<field name="name" />
+            				<field name="color" widget="colorpicker"/>
+            				<field name="score_min" />
+            				<field name="score_max" />
+            				<field name="relation_id"/>
+            			</tree>
+            		</field>
+            		<div>
+					    <field name="html_view"/>
+					</div>
+            	</page>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

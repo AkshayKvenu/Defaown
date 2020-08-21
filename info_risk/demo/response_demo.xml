@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <record id="response_risk_1" model="info.risk.response">
+            <field name="name">Retain/Tolerate</field>
+            <field name="description">Decide to retain the risk if it is unlikely to occur,deemed to be low impact or modification is not cost-effective</field>
+        </record>
+
+        <record id="response_risk_2" model="info.risk.response">
+            <field name="name">Amend/Treat</field>
+            <field name="description">Take steps to reduce or eliminate the risk's impact and/or likelihood by implementing cost-effective controls.</field>
+        </record>
+
+        <record id="response_risk_3" model="info.risk.response">
+            <field name="name">Share/Transfer</field>
+            <field name="description">Engage a third party by means of insurance, outsourcing or service agreements to take over the risk on your behalf.</field>
+        </record>
+
+        <record id="response_risk_4" model="info.risk.response">
+            <field name="name">Avoid/Terminate</field>
+            <field name="description">Eliminate the risk. This may require removing the asset concerned or restructuring associated activities/infrastructure.</field>
+        </record>
+
+        <record id="response_calculation_1" model="info.risk.calculation">
+            <field name="name">add1</field>
+            <field name="impact_score">1</field>
+            <field name="likelihood_score">1</field>
+            <field name="risk_score">2</field>
+        </record>
+        
+<!--         <record id="response_calculation_1" model="info.risk.calculation"> -->
+<!--             <field name="name">add</field> -->
+<!--             <field name="impact_score">1</field> -->
+<!--             <field name="likelihood_score">1</field> -->
+<!--             <field name="risk_score">2</field> -->
+<!--         </record> -->
+
+        
+        <record id="risk_threat_1" model="info.risk.threat">
+            <field name="name">Improper Maintenance</field>
+        </record>
+        
+        <record id="risk_threat_2" model="info.risk.threat">
+            <field name="name">Improper / Inadequate Procedure</field>
+        </record>
+        
+        <record id="risk_threat_3" model="info.risk.threat">
+            <field name="name">Improper Operation</field>
+        </record>
+        
+        <record id="risk_threat_4" model="info.risk.threat">
+            <field name="name">Improper Hardware Configuration</field>
+        </record>
+        
+        <record id="risk_threat_5" model="info.risk.threat">
+            <field name="name">Malfunctions of parts of devices</field>
+        </record>
+        
+        <record id="risk_threat_6" model="info.risk.threat">
+            <field name="name">Media Failure</field>
+        </record>
+
+    </data>
+</odoo>

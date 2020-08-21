@@ -1,0 +1,323 @@
+<odoo>
+	<data>
+
+		<record model="ir.ui.view" id="view_inforisk_likelihood_form">
+			<field name="name">info.risk.likelihood.form</field>
+			<field name="model">info.risk.likelihood</field>
+			<field name="arch" type="xml">
+				<form string="Info Risk Likelihood">
+					<header>
+						<field name="is_general" invisible='1' />
+						<button name="set_draft" string="Reset Description"
+							type="object" class="oe_highlight"
+							attrs="{'invisible': [('name','!=','General')]}" />
+					</header>
+					<sheet>
+						<group>
+							<group>
+								<field name="name" required='1'
+									attrs="{'readonly': [('name','=','General')]}" />
+								<field name="apetite_id" readonly='1' />
+							</group>
+							<field name="likelihood_ids">
+								<tree string="likelihood" create="false" editable="bottom"
+									delete="false" required='1'>
+									<field name="name" readonly='1' />
+									<field name="description" required='1' />
+								</tree>
+							</field>
+						</group>
+					</sheet>
+				</form>
+			</field>
+		</record>
+
+		<record model="ir.ui.view" id="view_inforisk_likelihood_tree">
+			<field name="name">info.risk.likelihood.tree</field>
+			<field name="model">info.risk.likelihood</field>
+			<field name="arch" type="xml">
+				<tree string="Info Risk Likelihood">
+					<!-- banner_route="/info_risk/info_risk_onboarding_panel" -->
+					<field name="name" />
+					<!-- <field name="description"/> -->
+				</tree>
+			</field>
+		</record>
+
+
+		<record model="ir.actions.act_window"
+			id="action_inforisk_likelihood">
+			<field name="name">Info Risk Likelihood</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">info.risk.likelihood</field>
+			<field name="view_mode">tree,form</field>
+			<field name="help" type="html">
+				<p class="o_view_nocontent_smiling_face">
+					Nothing to show
+				</p>
+			</field>
+		</record>
+
+
+		<record model="ir.ui.view" id="view_inforisk_impact_form">
+			<field name="name">info.risk.impact.form</field>
+			<field name="model">info.risk.impact</field>
+			<field name="arch" type="xml">
+				<form string="Info Risk Impact">
+					<header>
+						<field name="is_general" invisible='1' />
+						<button name="set_draft" string="Reset Description"
+							type="object" class="oe_highlight"
+							attrs="{'invisible': [('name','not in',['General','Confidentiality','Integrity','Availability'])]}" />
+					</header>
+					<sheet>
+						<group>
+							<group>
+								<field name="name" required='1'
+									attrs="{'readonly': [('name','in',['General','Confidentiality','Integrity','Availability'])]}" />
+								<field name="apetite_id" readonly='1'
+									attrs="{'invisible': [('apetite_id','=',False)]}" />
+							</group>
+							<field name="impact_ids">
+								<tree string="impact" create="false" editable="bottom"
+									delete="false">
+									<field name="name" readonly='1' />
+									<field name="description" required='1' />
+								</tree>
+							</field>
+
+						</group>
+					</sheet>
+				</form>
+			</field>
+		</record>
+
+		<record model="ir.ui.view" id="view_inforisk_impact_tree">
+			<field name="name">info.risk.impact.tree</field>
+			<field name="model">info.risk.impact</field>
+			<field name="arch" type="xml">
+				<tree string="Info Risk Impact">
+					<!-- banner_route="/info_risk/info_risk_onboarding_panel_impact" -->
+					<field name="name" />
+					<!-- <field name="description"/> -->
+				</tree>
+			</field>
+		</record>
+
+
+		<record model="ir.actions.act_window"
+			id="action_inforisk_impact">
+			<field name="name">Info Risk Impact</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">info.risk.impact</field>
+			<field name="view_mode">tree,form</field>
+			<field name="help" type="html">
+				<p class="o_view_nocontent_smiling_face">
+					Nothing to show
+				</p>
+			</field>
+		</record>
+
+
+		<record model="ir.ui.view" id="view_inforisk_calculation_form">
+			<field name="name">info.risk.calculation.form</field>
+			<field name="model">info.risk.calculation</field>
+			<field name="arch" type="xml">
+				<form string="Info Risk Calculation" create="false"
+					delete="false">
+					<sheet>
+						<group>
+							<group>
+								<field name="name" required='1' />
+								<field name="impact_score" required='1' />
+								<field name="likelihood_score" required='1' />
+								<field name="risk_score" readonly='1' />
+							</group>
+						</group>
+					</sheet>
+				</form>
+			</field>
+		</record>
+
+		<record model="ir.ui.view" id="view_inforisk_calculation_tree">
+			<field name="name">info.risk.calculation.tree</field>
+			<field name="model">info.risk.calculation</field>
+			<field name="arch" type="xml">
+				<tree string="Info Risk Calculation" create="false"
+					delete="false">
+					<field name="name" />
+					<!-- <field name="risk_score"/> -->
+				</tree>
+			</field>
+		</record>
+
+
+		<record model="ir.actions.act_window"
+			id="action_inforisk_calculation">
+			<field name="name">Info Risk Calculation</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">info.risk.calculation</field>
+			<field name="view_mode">tree,form</field>
+			<field name="help" type="html">
+				<p class="o_view_nocontent_smiling_face">
+					Nothing to show
+				</p>
+			</field>
+		</record>
+
+
+
+		<record model="ir.ui.view" id="view_inforisk_appetite_form">
+			<field name="name">info.risk.appetite.form</field>
+			<field name="model">info.risk.appetite</field>
+			<field name="arch" type="xml">
+				<form string="Info Risk Appetite">
+					<header>
+						<field name="is_assessment" invisible='1' />
+						<button name="action_validate" string="Approve"
+							type="object" class="oe_highlight" states='draft' />
+						<button name="action_draft" string="Set to draft"
+							attrs="{'invisible': ['|',('is_assessment','=',True),('state','=','draft')]}"
+							type="object" class="oe_highlight" />
+						<field name="state" widget='statusbar' />
+					</header>
+					<sheet>
+						<div class="oe_button_box" name="button_box"
+							style="height:50px"
+							attrs="{'invisible': [('state','=','draft')]}">
+							<button class="oe_stat_button" string="Likelihood"
+								name="open_likelihood" type="object" icon="fa-pencil">
+								<!-- <field string="Likelihood" name="likelihood_count" widget="statinfo" 
+									/> -->
+							</button>
+							<button class="oe_stat_button" string="Impact"
+								name="open_impact" type="object" icon="fa-pencil">
+								<!-- <field string="Impact" name="impact_count" widget="statinfo" 
+									/> -->
+							</button>
+
+						</div>
+						<group>
+							<group>
+								<field name="name" required='1'
+									attrs="{'readonly': [('state','=','approve')]}" />
+								<field name="likelihood_score"
+									attrs="{'readonly': [('state','=','approve')]}" />
+								<field name="impact_score"
+									attrs="{'readonly': [('state','=','approve')]}" />
+								<field name="calculation" readonly='1' />
+								<field name="score_min" readonly='1' />
+								<field name="score_max" readonly='1' />
+							</group>
+							<group>
+								<field name="html_view" nolabel="1" />
+							</group>
+						</group>
+						<notebook>
+							<page string="Criteria">
+								<group>
+									<button name="set_draft" string="Reset" type="object" />
+									<!-- class="oe_highlight" -->
+								</group>
+								<field name="criteria_ids"
+									attrs="{'readonly': [('state','=','approve')]}">
+									<tree string="Criteria" editable='bottom'>
+										<field name="is_default" invisible='1' />
+										<field name="name" required='1' />
+										<field name="score_min" />
+										<field name="score_max" />
+										<field name="description" />
+										<field name="color" widget="colorpicker" />
+									</tree>
+								</field>
+								<field name="default_criteria_ids" invisible='1'>
+									<!-- <tree string="Default Criteria" editable='bottom' > -->
+									<!-- <field name="is_default" invisible='1'/> -->
+									<!-- <field name="name" required='1'/> -->
+									<!-- <field name="score_min"/> -->
+									<!-- <field name="score_max"/> -->
+									<!-- <field name="description"/> -->
+									<!-- <field name="color" widget="colorpicker"/> -->
+									<!-- </tree> -->
+								</field>
+							</page>
+						</notebook>
+					</sheet>
+				</form>
+			</field>
+		</record>
+
+		<record model="ir.ui.view" id="view_inforisk_appetite_tree">
+			<field name="name">info.risk.appetite.tree</field>
+			<field name="model">info.risk.appetite</field>
+			<field name="arch" type="xml">
+				<tree string="Info Risk Appetite">
+					<field name="name" />
+					<field name="score_min" />
+					<field name="score_max" />
+					<field name="calculation" />
+					<field name="state" />
+				</tree>
+			</field>
+		</record>
+
+
+		<record model="ir.actions.act_window"
+			id="action_inforisk_appetite">
+			<field name="name">Info Risk Appetite</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">info.risk.appetite</field>
+			<field name="view_mode">tree,form</field>
+			<field name="help" type="html">
+				<p class="o_view_nocontent_smiling_face">
+					Nothing to show
+				</p>
+			</field>
+		</record>
+
+		<record model="ir.ui.view" id="view_inforisk_response_form">
+			<field name="name">info.risk.response.form</field>
+			<field name="model">info.risk.response</field>
+			<field name="arch" type="xml">
+				<form string="Info Risk Response" create="false" delete="false">
+					<header>
+						<button name="set_draft" string="Set to draft"
+							type="object" class="oe_highlight" />
+					</header>
+					<sheet>
+						<group>
+							<group>
+								<field name="name" readonly='1' />
+								<field name="description" required='1' />
+								<!-- <field name="default_description" /> -->
+							</group>
+						</group>
+					</sheet>
+				</form>
+			</field>
+		</record>
+
+		<record model="ir.ui.view" id="view_inforisk_response_tree">
+			<field name="name">info.risk.response.tree</field>
+			<field name="model">info.risk.response</field>
+			<field name="arch" type="xml">
+				<tree string="Info Risk Response" create="false" delete="false">
+					<field name="name" />
+				</tree>
+			</field>
+		</record>
+
+		<record model="ir.actions.act_window"
+			id="action_inforisk_response">
+			<field name="name">Info Risk Response</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">info.risk.response</field>
+			<field name="view_mode">tree,form</field>
+			<field name="help" type="html">
+				<p class="o_view_nocontent_smiling_face">
+					Nothing to show
+				</p>
+			</field>
+		</record>
+	</data>
+</odoo>

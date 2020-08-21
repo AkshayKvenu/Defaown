@@ -1,0 +1,42 @@
+<odoo>
+    <data>
+
+<record model="ir.ui.view" id="view_cmdb_relationship_class_form">
+        <field name="name">info.cmdb.relationship.class.form</field>
+        <field name="model">info.cmdb.relationship.class</field>
+        <field name="arch" type="xml">
+          <form string="Info CMDB Relationship Class">
+            <sheet>
+            <group>
+	            <group>
+	            	<field name="base_class" />
+	            	<field name="relation_type"/>
+	            	<field name="dependent_class"/>
+	            </group>
+            </group>
+            </sheet>
+          </form>
+        </field>
+</record>
+
+<record model="ir.ui.view" id="view_cmdb_relationship_class_tree">
+        <field name="name">info.cmdb.relationship.class.tree</field>
+        <field name="model">info.cmdb.relationship.class</field>
+        <field name="arch" type="xml">
+            <tree string="Info CMDB Relationship Class">
+            <field name="base_class"/>
+            <field name="relation_type"/>
+            </tree>
+        </field>
+</record>
+    
+
+    <record model="ir.actions.act_window" id="action_cmdb_relationship_class">
+        <field name="name">Info CMDB Relationship Class</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">info.cmdb.relationship.class</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    </data>
+</odoo>

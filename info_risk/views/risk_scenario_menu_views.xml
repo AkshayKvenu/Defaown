@@ -1,0 +1,152 @@
+<odoo>
+	<data>
+
+		<record model="ir.ui.view" id="view_inforisk_threat_form">
+			<field name="name">info.risk.threat.form</field>
+			<field name="model">info.risk.threat</field>
+			<field name="arch" type="xml">
+				<form string="Info Risk threat">
+					<sheet>
+						<group>
+							<group>
+								<field name="name" required='1' />
+								<field name="description" />
+							</group>
+						</group>
+					</sheet>
+				</form>
+			</field>
+		</record>
+
+		<record model="ir.ui.view" id="view_inforisk_threat_tree">
+			<field name="name">info.risk.threat.tree</field>
+			<field name="model">info.risk.threat</field>
+			<field name="arch" type="xml">
+				<tree string="Info Risk threat">
+					<field name="name" />
+					<field name="description" />
+				</tree>
+			</field>
+		</record>
+
+
+		<record model="ir.actions.act_window"
+			id="action_inforisk_threat">
+			<field name="name">Info Risk threat</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">info.risk.threat</field>
+			<field name="view_mode">tree,form</field>
+			<field name="help" type="html">
+				<p class="o_view_nocontent_smiling_face">
+					Nothing to show
+				</p>
+			</field>
+		</record>
+
+
+
+
+		<record model="ir.ui.view"
+			id="view_inforisk_vulnerability_form">
+			<field name="name">info.risk.vulnerability.form</field>
+			<field name="model">info.risk.vulnerability</field>
+			<field name="arch" type="xml">
+				<form string="Info Risk vulnerability">
+					<sheet>
+						<group>
+							<group>
+								<field name="name" required='1' />
+								<field name="vulnerability_type_id" />
+
+							</group>
+							<group>
+								<field name="threat_ids" widget='many2many_tags' />
+							</group>
+						</group>
+						<group>
+							<field name="description" />
+						</group>
+					</sheet>
+				</form>
+			</field>
+		</record>
+
+		<record model="ir.ui.view"
+			id="view_inforisk_vulnerability_tree">
+			<field name="name">info.risk.vulnerability.tree</field>
+			<field name="model">info.risk.vulnerability</field>
+			<field name="arch" type="xml">
+				<tree string="Info Risk vulnerability">
+					<field name="name" />
+					<field name="vulnerability_type_id" />
+				</tree>
+			</field>
+		</record>
+
+
+		<record model="ir.actions.act_window"
+			id="action_inforisk_vulnerability">
+			<field name="name">Info Risk Vulnerability</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">info.risk.vulnerability</field>
+			<field name="view_mode">tree,form</field>
+			<field name="help" type="html">
+				<p class="o_view_nocontent_smiling_face">
+					Nothing to show
+				</p>
+			</field>
+		</record>
+
+
+
+		<record model="ir.ui.view" id="view_inforisk_scenarios_form">
+			<field name="name">info.risk.scenarios.form</field>
+			<field name="model">info.risk.scenarios</field>
+			<field name="arch" type="xml">
+				<form string="Info Risk scenarios">
+					<sheet>
+						<group>
+							<group>
+								<field name="name" readonly='1' />
+								<field name="vulnerability_id" required='1' />
+								<field name="threat_id" required='1' />
+							</group>
+							<!-- <group> -->
+							<!-- <field name="description"/> -->
+							<!-- </group> -->
+						</group>
+					</sheet>
+				</form>
+			</field>
+		</record>
+
+		<record model="ir.ui.view" id="view_inforisk_scenarios_tree">
+			<field name="name">info.risk.scenarios.tree</field>
+			<field name="model">info.risk.scenarios</field>
+			<field name="arch" type="xml">
+				<tree string="Info Risk scenarios"
+					banner_route="/info_risk/info_risk_onboarding_panel_scenarios">
+					<field name="name" />
+					<field name="vulnerability_id" />
+					<field name="threat_id" />
+				</tree>
+			</field>
+		</record>
+
+
+		<record model="ir.actions.act_window"
+			id="action_inforisk_scenarios">
+			<field name="name">Info Risk scenarios</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">info.risk.scenarios</field>
+			<field name="view_mode">tree,form</field>
+			<field name="help" type="html">
+				<p class="o_view_nocontent_smiling_face">
+					Nothing to show
+				</p>
+			</field>
+		</record>
+
+
+	</data>
+</odoo>

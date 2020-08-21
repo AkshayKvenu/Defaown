@@ -1,0 +1,68 @@
+<odoo>
+    <data>
+
+<record model="ir.ui.view" id="view_cmdb_classes_form">
+        <field name="name">info.cmdb.classes.form</field>
+        <field name="model">info.cmdb.classes</field>
+        <field name="arch" type="xml">
+          <form string="InfoCMDB Classes">
+            <sheet>
+            <group>
+	            <group>
+	            	<field name="class_name" readonly='1'/>
+	            	<field name="class_id" required='1'/>
+	            </group>
+	            <group>
+	            	<field name="description"/>
+	            	<field name="icon" widget="image" class="oe_left oe_avatar"/>
+	            </group>
+            </group>
+          	 <notebook colspan="4">
+                 <page string="Completeness">
+                 <group>
+                   </group>
+                </page>
+                 <page string="Correctness">
+                 <group>
+                   <field name="class_orphan_relationship_types"/>
+                   </group>
+                </page>
+                 <page string="Suggested Relationships">
+                 <group>
+                   <field name="class_suggested_relationships"/>
+                   </group>
+                </page>
+                 <page string="Dependent Relationships">
+                 <group>
+                   <field name="class_dependent_relationships"/>
+                   </group>
+                </page>
+                        
+              </notebook>
+            </sheet>
+          </form>
+        </field>
+</record>
+
+<record model="ir.ui.view" id="view_cmdb_classes_tree">
+        <field name="name">info.cmdb.classes.tree</field>
+        <field name="model">info.cmdb.classes</field>
+        <field name="arch" type="xml">
+            <tree string="InfoCMDB Classes">
+            <field name="class_name"/>
+            <field name="description"/>
+            <field name="class_id"/>
+            </tree>
+        </field>
+</record>
+    
+
+    <record model="ir.actions.act_window" id="action_cmdb_classes">
+        <field name="name">InfoCMDB Classes</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">info.cmdb.classes</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    </data>
+</odoo>

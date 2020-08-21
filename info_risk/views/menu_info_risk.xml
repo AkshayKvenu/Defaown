@@ -1,0 +1,73 @@
+<odoo>
+	<data>
+
+		<!-- CMDB main menu -->
+		<menuitem name="InfoRisk" id="menu_inforisk_root"
+			sequence="4" />
+
+
+		<!-- Risk Assessment and Management menu -->
+		<menuitem id="menu_inforisk_management_sub"
+			name="Risk Management" parent="menu_inforisk_root" sequence="2" />
+
+		<menuitem id="menu_inforisk_appetite" name="Risk Appetite"
+			action="action_inforisk_appetite"
+			parent="menu_inforisk_management_sub" sequence="1" />
+
+		<menuitem id="menu_inforisk_assessment"
+			name="Risk Assessment" action="action_inforisk_assessment"
+			parent="menu_inforisk_management_sub" sequence="2" />
+
+		<menuitem id="menu_inforisk_review" name="Risk Review"
+			action="action_inforisk_review" parent="menu_inforisk_management_sub"
+			sequence="3" />
+
+		<!-- <menuitem id="menu_inforisk_management" name="Risk Management" action="action_inforisk_management" -->
+		<!-- parent="menu_inforisk_assessment_management_sub" sequence="2" /> -->
+
+
+
+		<!-- Risk Scenarios menu -->
+		<menuitem id="menu_inforisk_risk_scenario_sub"
+			name="Risk Scenarios" parent="menu_inforisk_root" sequence="3" />
+
+		<menuitem id="menu_inforisk_threat" name="Threats"
+			action="action_inforisk_threat"
+			parent="menu_inforisk_risk_scenario_sub" sequence="1" />
+
+		<menuitem id="menu_inforisk_vulnerability"
+			name="Vulnerabilities" action="action_inforisk_vulnerability"
+			parent="menu_inforisk_risk_scenario_sub" sequence="2" />
+
+		<menuitem id="menu_inforisk_scenarios" name="Risk Scenarios"
+			action="action_inforisk_scenarios"
+			parent="menu_inforisk_risk_scenario_sub" sequence="3" />
+
+
+		<!-- Configuration menu -->
+		<menuitem id="menu_inforisk_configuration"
+			name="Configuration" parent="menu_inforisk_root" sequence="4" />
+
+		<menuitem id="menu_inforisk_settings" name="Settings"
+			action="base.res_config_setting_act_window"
+			parent="menu_inforisk_configuration" sequence="1" />
+
+		<!-- <menuitem id="menu_inforisk_likelihood" name="Likelihood" -->
+		<!-- action="action_inforisk_likelihood" -->
+		<!-- parent="menu_inforisk_configuration" sequence="1" /> -->
+
+		<!-- <menuitem id="menu_inforisk_impact" name="Impact" -->
+		<!-- action="action_inforisk_impact" parent="menu_inforisk_configuration" -->
+		<!-- sequence="2" /> -->
+
+		<!-- <menuitem id="menu_inforisk_calculation" -->
+		<!-- name="Risk Calculation" action="action_inforisk_calculation" -->
+		<!-- parent="menu_inforisk_configuration" sequence="3" /> -->
+		<menuitem id="menu_inforisk_response" name="Risk Response"
+			parent="menu_inforisk_configuration" sequence="5" />
+		<menuitem id="menu_inforisk_response_type"
+			name="Risk Response Types" action="action_inforisk_response"
+			parent="menu_inforisk_response" sequence="5" />
+
+	</data>
+</odoo>
