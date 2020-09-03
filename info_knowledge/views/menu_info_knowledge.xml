@@ -22,6 +22,10 @@
 			action="action_infoknowledge_category"
 			parent="menu_infoknowledge_menu" sequence="2" />
 
+		<menuitem id="menu_infoknowledge_feedback" name="Knowledge Feedback"
+			action="action_infoknowledge_feedback"
+			parent="menu_infoknowledge_menu" sequence="4" />
+
 
 <!-- 		<menuitem id="menu_inforisk_assessment" -->
 <!-- 			name="Risk Assessment" action="action_inforisk_assessment" -->

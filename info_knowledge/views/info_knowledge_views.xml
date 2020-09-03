@@ -1,17 +1,116 @@
 <odoo>
   <data>
+  <record id="view_infoknowledge_knowledge_kanban" model="ir.ui.view">
+        <field name="name">info.knowledge.knowledge.kanban</field>
+        <field name="model">info.knowledge.knowledge</field>
+        <field name="arch" type="xml">
+            <kanban class="o_kanban_mobile">
+                <field name="number"/>
+                <field name="short_desc"/>
+                <field name="article"/>
+                <field name="flag"/>
+                <field name="flag2"/>
+				<field name="like_count"/>
+				<field name="dislike_count"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div t-attf-class="oe_kanban_card oe_kanban_global_click" style='width:600px'>
+                            <div class="row mb4">
+                                <div class="col-8">
+                                    <strong>
+                                        <field name="number"/>
+                                    </strong>
+                                </div>
+                                <div class="col-8">
+                                        <field name="short_desc"/>
+                                </div>
+<!--                                 <div class="col-8"> -->
+<!--                                     <strong> -->
+<!--                                         <field name="article"/> -->
+<!--                                     </strong> -->
+<!--                                 </div> -->
+<!--                                 <div class="col-4"> -->
+<!--                                     <span class="float-right"> -->
+<!--                                         <field name="state" widget="kanban_label_selection" -->
+<!--                                                options="{'classes': {'draft': 'default', 'done': 'success'}}"/> -->
+<!--                                     </span> -->
+<!--                                 </div> -->
+                            </div>
+                            <div class="row">
+                                <div class="col-2">
+                                    <field name="published"/>
+                                </div>
+                                <div class="col-2">
+                                    <field name="valid_to"/>
+                                </div>
+                                
+                            </div>
+                            <div class="row">
+                                <div class="col-8">
+                            		<field name="user_id"/>
+                            		<field name="is_like" invisible='1'/>
+                            		<field name="is_dislike" invisible='1'/>
+                            		<field name="flag" invisible='1'/>
+                            	</div>
+                                <div class="col-4">
+                            		<button type="object" class="btn  fa fa-eye " name='action_pass'>
+                					<field name="flag2"/></button>
+                            		<button type="object" class="btn  fa fa-thumbs-o-up " name='action_like'
+											attrs="{'invisible': [('is_like','!=', False)]}" />
+                            		<button type="object" class="btn  fa fa-thumbs-up " name='action_pass'
+											attrs="{'invisible': [('is_like','=', False)]}" />
+                					<field name="like_count"/>
+                            		<button type="object" class="btn  fa fa-thumbs-o-down " name='action_dislike'
+											attrs="{'invisible': [('is_dislike','!=', False)]}"/>
+                            		<button type="object" class="btn  fa fa-thumbs-down " name='action_pass'
+											attrs="{'invisible': [('is_dislike','=', False)]}"/>
+									<field name="dislike_count"/>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
   <record model="ir.ui.view" id="view_infoknowledge_knowledge_form">
 			<field name="name">info.knowledge.knowledge.form</field>
 			<field name="model">info.knowledge.knowledge</field>
 			<field name="arch" type="xml">
 				<form string="Info Knowledge">
 					<header>
+						<field name="is_instant_publish" invisible='1'/>
+						<field name="is_instant_retire" invisible='1'/>
 						<button name="set_draft" string="Set to draft"
 							type="object" class="oe_highlight"
 							attrs="{'invisible': [('state','=','draft')]}" />
-								<field name="state"  widget='statusbar'/>
+						<button name="set_review" string="Review"
+							type="object" class="oe_highlight"
+							attrs="{'invisible': ['|',('state','!=','draft'),('is_instant_publish','!=',False)]}" />
+						<button name="set_publish" string="Publish"
+							type="object" class="oe_highlight"
+							states='draft,review'/>
+						<button name="set_pend_retire" string="Pending Retirement"
+							type="object" class="oe_highlight"
+							states='published' attrs="{'invisible': ['|',('is_instant_retire','!=',False)]}"/>
+						<button name="set_retire" string="Confirm Retirement"
+							type="object" class="oe_highlight"
+							states='published,retirement'/>
+						<field name="state"  widget='statusbar'/>
 					</header>
 					<sheet>
+					<div class="oe_button_box" name="button_box">
+							<button class="oe_stat_button" string="Add/remove"
+								 name="%(action_view_rating_wizard)d" type="action" icon="fa-pencil">
+								<!-- <field string="Likelihood" name="likelihood_count" widget="statinfo" 
+									/> -->
+							</button>
+							<button class="oe_stat_button" string="Rating"
+								name="open_rating" type="object" icon="fa-star">
+								<!-- <field string="Likelihood" name="likelihood_count" widget="statinfo" 
+									/> -->
+							</button>
+					</div>
                     <div class="oe_title" attrs="{'invisible': [('number', '=', 'false')]}">
 <!--                         <label for="info_asset_name_seq"  class="oe_edit_only"/> -->
                         <h1>
@@ -20,26 +119,33 @@
                     </div>
 						<group>
 							<group>
-<!-- 								<field name="knowledge_base" required='1'/> -->
-<!--                                         <label for="lang" /> -->
-<!--                                         <div class="o_row"> -->
-<!--                                             <field name="lang"/> -->
-<!--                                             <button -->
-<!--                                                 type="action" -->
-<!--                                                 name="%(base.res_lang_act_window)d" -->
-<!--                                                 class="btn-sm btn-link mb4 fa fa-globe" -->
-<!--                                                 aria-label="More languages" -->
-<!--                                                 title="More languages"/> -->
-<!--                                         </div> -->
+<!-- 							 <div class="ratings" t-att-data-object_id="object_id" t-att-data-object_model="object_model" t-att-data-input_name="input_name"> -->
+<!--                 <ul class="list-star-rating list-inline list-unstyled"> -->
+<!--                     <li class="star-rating"><a href="" data-star="1"><i class="fa fa-star"></i></a></li> -->
+<!--                     <li class="star-rating"><a href="" data-star="2"><i class="fa fa-star"></i></a></li> -->
+<!--                     <li class="star-rating"><a href="" data-star="3"><i class="fa fa-star"></i></a></li> -->
+<!--                     <li class="star-rating"><a href="" data-star="4"><i class="fa fa-star"></i></a></li> -->
+<!--                     <li class="star-rating"><a href="" data-star="5"><i class="fa fa-star"></i></a></li> -->
+<!--                     <li class="star-rating star-rating-count">(0)</li> -->
+<!--                 </ul> -->
+<!--             </div> -->
 								<field name="language_id"/>
+								<field name="is_template"/>
+                                <field name="flag" invisible='1'/>
+                                <field name="flag_form" invisible='1'/>
+                                <field name="flag2"/>
+								<field name="template_id" domain="[('is_template', '=', True)]" attrs="{'invisible': [('is_template', '!=', False)]}"/>
 							</group>
 							<group>
 								<field name="published" required='1'/>
 								<field name="valid_to" required='1' />
+<!-- 								<field name="knowledge_base_id"/> -->
 							</group>
 							<group>
 								<field name="short_desc"/>
 								<field name="parent_id"/>
+								<field name="is_like"  invisible='1'/>
+								<field name="is_dislike"  invisible='1'/>
 							</group>
 							<group>
 								<field name="link"/>
@@ -49,6 +155,14 @@
 							</group>
 							<group>
 								<field name="article" />
+								<field name="user_count_ids">
+									<tree string="user_count_ids" editable='bottom'>
+										<field name="user_id" />
+										<field name="count" />
+										<field name="is_like"  invisible='1'/>
+										<field name="is_dislike" invisible='1' />
+									</tree>
+								</field>
 						</group>
 					</sheet>
 				</form>
@@ -70,10 +184,10 @@
 
 		<record model="ir.actions.act_window"
 			id="action_infoknowledge_knowledge">
-			<field name="name">Info Knowledge</field>
+			<field name="name">Info Knowledge Article</field>
 			<field name="type">ir.actions.act_window</field>
 			<field name="res_model">info.knowledge.knowledge</field>
-			<field name="view_mode">tree,form</field>
+			<field name="view_mode">kanban,tree,form</field>
 			<field name="help" type="html">
 				<p class="o_view_nocontent_smiling_face">
 					Nothing to show
@@ -87,6 +201,15 @@
 			<field name="model">info.knowledge.base</field>
 			<field name="arch" type="xml">
 				<form string="Info Knowledge">
+					<header>
+						<button name="action_done" string="Done"
+							type="object" class="oe_highlight"
+							states='draft'/>
+						<button name="action_draft" string="Set to Draft"
+							type="object"
+							states='done'/>
+					<field name='state' widget='statusbar'/>
+					</header>
 					<sheet>
 				<group>
                     <div class="oe_title">	
@@ -117,8 +240,8 @@
 <!-- 								<field name="manager"/> -->
 <!-- 							</group> -->
 							<group>
-								<field name="publish_workflow"/>
-								<field name="retir_flow"/>
+								<field name="publish_workflow" required='1' attrs="{'readonly': [('state','=','done')]}"/>
+								<field name="retir_flow" required='1' attrs="{'readonly': [('state','=','done')]}"/>
 							</group>
 							<group>
 								<field name="is_active"/>
@@ -126,7 +249,8 @@
 								<field name="desc"/>   
 							</group>
 							<group>
-								<field name="knowledge_ids" widget="many2many_tags"/>
+								<field name="knowledge_ids" widget="many2many_tags" required='1'
+								 attrs="{'readonly': [('state','=','done')]}"/>
 								<field name="category_ids" widget="many2many_tags"/>
 							</group>
 							<group>
@@ -211,6 +335,117 @@
 			<field name="name">Info Knowledge Category</field>
 			<field name="type">ir.actions.act_window</field>
 			<field name="res_model">info.knowledge.category</field>
+			<field name="view_mode">tree,form</field>
+			<field name="help" type="html">
+				<p class="o_view_nocontent_smiling_face">
+					Nothing to show
+				</p>
+			</field>
+		</record>
+		
+		
+  <record model="ir.ui.view" id="view_infoknowledge_feedback_form">
+			<field name="name">info.knowledge.feedback.form</field>
+			<field name="model">info.knowledge.feedback</field>
+			<field name="arch" type="xml">
+				<form string="Info Knowledge feedback">
+					<sheet>
+						<group>
+							<group>
+								<field name="created_date" required='1'/>
+								<field name="article_id" required='1' />
+								<field name="user_id"/>
+							</group>
+							<group>
+								<field name="useful" attrs="{'required': [('is_flagged', '!=', False)],
+															'readonly': [('is_flagged', '=', False)]}"/>
+								<field name="is_flagged" readonly='1'/>
+							</group>
+						</group>
+							<group class='col-12'>
+								<field name="comment" required='1'/>
+								<field name="work_notes" attrs="{'required': [('is_flagged', '!=', False)],
+																'readonly': [('is_flagged', '=', False)]}"/>
+							</group>
+					</sheet>
+				</form>
+			</field>
+		</record>
+
+
+		<record model="ir.ui.view" id="view_infoknowledge_feedback_tree">
+			<field name="name">info.knowledge.feedback.tree</field>
+			<field name="model">info.knowledge.feedback</field>
+			<field name="arch" type="xml">
+				<tree string="Info Knowledge feedback">
+					<field name="created_date" />
+					<field name="article_id" />
+				</tree>
+			</field>
+		</record>
+
+		<record model="ir.actions.act_window"
+			id="action_infoknowledge_feedback">
+			<field name="name">Info Knowledge feedback</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">info.knowledge.feedback</field>
+			<field name="view_mode">tree,form</field>
+			<field name="help" type="html">
+				<p class="o_view_nocontent_smiling_face">
+					Nothing to show
+				</p>
+			</field>
+		</record>
+		
+		
+  <record model="ir.ui.view" id="view_infoknowledge_rating_form">
+			<field name="name">info.knowledge.rating.form</field>
+			<field name="model">info.knowledge.rating</field>
+			<field name="arch" type="xml">
+				<form string="Info Knowledge rating" create="false">
+					<sheet>
+						<group>
+							<group>
+								<field name="rating_text" required='1' />
+								<field name="rating_comment" required='1'/>
+							</group>
+							<group>
+								<field name="user_id" readonly='1' />
+								<field name="article_id" readonly='1'/>
+							</group>
+<!-- 							<group> -->
+<!-- 								<field name="useful" attrs="{'required': [('is_flagged', '!=', False)], -->
+<!-- 															'readonly': [('is_flagged', '=', False)]}"/> -->
+<!-- 								<field name="is_flagged" readonly='1'/> -->
+<!-- 							</group> -->
+<!-- 						</group> -->
+<!-- 							<group class='col-12'> -->
+<!-- 								<field name="comment" required='1'/> -->
+<!-- 								<field name="work_notes" attrs="{'required': [('is_flagged', '!=', False)], -->
+<!-- 																'readonly': [('is_flagged', '=', False)]}"/> -->
+							</group>
+					</sheet>
+				</form>
+			</field>
+		</record>
+
+
+		<record model="ir.ui.view" id="view_infoknowledge_rating_tree">
+			<field name="name">info.knowledge.rating.tree</field>
+			<field name="model">info.knowledge.rating</field>
+			<field name="arch" type="xml">
+				<tree string="Info Knowledge rating" create="false">
+					<field name="rating_text" />
+					<field name="rating_comment" />
+				</tree>
+			</field>
+		</record>
+
+		<record model="ir.actions.act_window"
+			id="action_infoknowledge_rating">
+			<field name="name">Info Knowledge rating</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">info.knowledge.rating</field>
 			<field name="view_mode">tree,form</field>
 			<field name="help" type="html">
 				<p class="o_view_nocontent_smiling_face">
