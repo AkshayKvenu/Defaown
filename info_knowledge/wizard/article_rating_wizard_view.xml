@@ -7,9 +7,26 @@
 			<form string="rating">
 				<group>
 					<group>
+<!-- 					 <div class="stars"> -->
+<!--                 <span class="fa fa-star-o no-edit"></span> -->
+<!--                 <span class="fa fa-star-o no-edit"></span> -->
+<!--                 <span class="fa fa-star-o no-edit"></span> -->
+<!--                 <span class="fa fa-star-o no-edit"></span> -->
+<!--                 <span class="fa fa-star-o no-edit"></span> -->
+<!--                </div> -->
+<!-- 						<div class="ratings" t-att-data-object_id="object_id" t-att-data-object_model="object_model" t-att-data-input_name="input_name"> -->
+<!-- 			                <ul class="list-star-rating list-inline list-unstyled"> -->
+<!-- 			                    <li class="star-rating"><a href="" data-star="1"><i class="fa fa-star"></i></a></li> -->
+<!-- 			                    <li class="star-rating"><a href="" data-star="2"><i class="fa fa-star"></i></a></li> -->
+<!-- 			                    <li class="star-rating"><a href="" data-star="3"><i class="fa fa-star"></i></a></li> -->
+<!-- 			                    <li class="star-rating"><a href="" data-star="4"><i class="fa fa-star"></i></a></li> -->
+<!-- 			                    <li class="star-rating"><a href="" data-star="5"><i class="fa fa-star"></i></a></li> -->
+<!-- 			                    <li class="star-rating star-rating-count">(0)</li> -->
+<!-- 			                </ul> -->
+<!-- 			            </div> -->
 
 						<!-- <field name="name" required='1'/> -->
-						<field name="rating_text" required='1' readonly='0'/>
+						<field name="rating_text"  widget='priority' required='1' readonly='0'/>
 						<field name="rating_comments" required='1'  readonly='0'/>
 					</group>
 				</group>

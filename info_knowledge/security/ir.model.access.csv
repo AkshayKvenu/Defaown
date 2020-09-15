@@ -8,3 +8,4 @@ access_info_knowledge_feedback,access_info_knowledge_feedback,model_info_knowled
 access_info_knowledge_users,access_info_knowledge_users,model_info_knowledge_users,base.group_user,1,1,1,1
 access_info_knowledge_rating,access_info_knowledge_rating,model_info_knowledge_rating,base.group_user,1,1,1,1 
 access_info_rating_wizard,access_info_rating_wizard,model_info_rating_wizard,base.group_user,1,1,1,1 
+access_info_knowledge_tags,access_info_knowledge_tags,model_info_knowledge_tags,base.group_user,1,1,1,1

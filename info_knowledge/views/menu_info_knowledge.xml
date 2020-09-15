@@ -9,55 +9,33 @@
 		<!-- Risk Assessment and Management menu -->
 		<menuitem id="menu_infoknowledge_menu"
 			name="Knowledge" parent="menu_infoknowledge_root" sequence="2" />
-
-		<menuitem id="menu_infoknowledge_knowledge" name="Knowledge Articles"
-			action="action_infoknowledge_knowledge"
-			parent="menu_infoknowledge_menu" sequence="3" />
-
-		<menuitem id="menu_infoknowledge_base" name="Knowledge Bases"
-			action="action_infoknowledge_base"
-			parent="menu_infoknowledge_menu" sequence="1" />
-
-		<menuitem id="menu_infoknowledge_category" name="Knowledge Categories"
-			action="action_infoknowledge_category"
-			parent="menu_infoknowledge_menu" sequence="2" />
-
-		<menuitem id="menu_infoknowledge_feedback" name="Knowledge Feedback"
-			action="action_infoknowledge_feedback"
-			parent="menu_infoknowledge_menu" sequence="4" />
-
-
-<!-- 		<menuitem id="menu_inforisk_assessment" -->
-<!-- 			name="Risk Assessment" action="action_inforisk_assessment" -->
-<!-- 			parent="menu_inforisk_management_sub" sequence="2" /> -->
-
-<!-- 		<menuitem id="menu_inforisk_review" name="Risk Review" -->
-<!-- 			action="action_inforisk_review" parent="menu_inforisk_management_sub" -->
-<!-- 			sequence="3" /> -->
-
-		<!-- <menuitem id="menu_inforisk_management" name="Risk Management" action="action_inforisk_management" -->
-		<!-- parent="menu_inforisk_assessment_management_sub" sequence="2" /> -->
+	
+			<menuitem id="menu_infoknowledge_knowledge" name="Knowledge Articles"
+				action="action_infoknowledge_knowledge"
+				parent="menu_infoknowledge_menu" sequence="3" />
+	
+			<menuitem id="menu_infoknowledge_base" name="Knowledge Bases"
+				action="action_infoknowledge_base"
+				parent="menu_infoknowledge_menu" sequence="1" />
+	
+			<menuitem id="menu_infoknowledge_category" name="Knowledge Categories"
+				action="action_infoknowledge_category"
+				parent="menu_infoknowledge_menu" sequence="2" />
+	
+			<menuitem id="menu_infoknowledge_feedback" name="Knowledge Feedback"
+				action="action_infoknowledge_feedback"
+				parent="menu_infoknowledge_menu" sequence="4" />
 
 
-
-		<!-- Risk Scenarios menu -->
-<!-- 		<menuitem id="menu_inforisk_risk_scenario_sub" -->
-<!-- 			name="Risk Scenarios" parent="menu_inforisk_root" sequence="3" /> -->
-
-<!-- 		<menuitem id="menu_inforisk_threat" name="Threats" -->
-<!-- 			action="action_inforisk_threat" -->
-<!-- 			parent="menu_inforisk_risk_scenario_sub" sequence="1" /> -->
-
-<!-- 		<menuitem id="menu_inforisk_vulnerability" -->
-<!-- 			name="Vulnerabilities" action="action_inforisk_vulnerability" -->
-<!-- 			parent="menu_inforisk_risk_scenario_sub" sequence="2" /> -->
-
-<!-- 		<menuitem id="menu_inforisk_scenarios" name="Risk Scenarios" -->
-<!-- 			action="action_inforisk_scenarios" -->
-<!-- 			parent="menu_inforisk_risk_scenario_sub" sequence="3" /> -->
 
 
 		<!-- Configuration menu -->
+		<menuitem id="menu_infoknowledge_config"
+			name="Configuration" parent="menu_infoknowledge_root" sequence="4" />
+			
+			<menuitem id="menu_infoknowledge_tags" name="Tags"
+				action="action_infoknowledge_tags"
+				parent="menu_infoknowledge_config" sequence="1" />
 <!-- 		<menuitem id="menu_inforisk_configuration" -->
 <!-- 			name="Configuration" parent="menu_inforisk_root" sequence="4" /> -->
 

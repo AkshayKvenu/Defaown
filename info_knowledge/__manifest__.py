@@ -27,6 +27,7 @@
         'security/security_knowledge.xml',
         'security/ir.model.access.csv',
         'wizard/article_rating_wizard_view.xml',
+        'views/info_config_views.xml',
         'views/info_knowledge_views.xml',
         'views/menu_info_knowledge.xml',
     ],

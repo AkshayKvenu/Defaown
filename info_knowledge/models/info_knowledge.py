@@ -1,9 +1,23 @@
 # -*- coding: utf-8 -*-
+import base64
 
 from odoo import models, fields, api, _
 from odoo.exceptions import UserError, ValidationError
+from odoo.modules.module import get_resource_path
+from bs4 import BeautifulSoup
 
 
+
+class InfoKnowledgeTags(models.Model):
+    _name = 'info.knowledge.tags'
+    
+    name = fields.Char('Name')
+    
+    _sql_constraints = [
+            ('title_uniq', 'unique(name)', 'Name must be unique!'),
+        ]
+    
+    
 class ProductProduct(models.Model):
     _inherit = 'product.product'
     
@@ -39,11 +53,10 @@ class InfoKnowledgeBase(models.Model):
                                    ('approval', 'Knowledge Approval Retire')],
                                     "Retire Workflow")
     is_active = fields.Boolean('Active')
-    q_a = fields.Boolean('Enable social questions and answers')
+    active = fields.Boolean(default=True)
     desc = fields.Text('Description')
-    set_default = fields.Boolean('Set default knowledge field values')
-    related_cmdb_ids = fields.Many2many('info.cmdb.classes',string='Related CI')
-    knowledge_ids = fields.One2many('info.knowledge.knowledge','knowledge_base_id', string='Knowledge')
+    related_asset_ids = fields.Many2many('account.asset.asset',string='Related CI')
+    knowledge_ids = fields.One2many('info.knowledge.knowledge','knowledge_base_id', string='Knowledge Article')
     category_ids = fields.Many2many('info.knowledge.category',string='Knowledge category')
     read_group_ids = fields.Many2many('res.groups', relation='read_group_id', string='Can read')
     contibute_groups_ids = fields.Many2many('res.groups', relation='contibute_groups_id', string='Can contribute')
@@ -66,6 +79,11 @@ class InfoKnowledgeBase(models.Model):
                 rec.is_instant_retire = True
             else:
                 rec.is_instant_retire = False
+            rec.category_ids = [(6, 0, self.category_ids.ids)]
+            print("qqqqqqqqqqqqqqqqq",self.read_group_ids)
+            for i in self.read_group_ids:
+                print("Ssssssssssssssssssssss",i.users)
+#                 users = approver_group.users.
                 
                 
     def action_draft(self):
@@ -73,6 +91,7 @@ class InfoKnowledgeBase(models.Model):
         for rec in self.knowledge_ids:
             rec.is_instant_publish = False
             rec.is_instant_retire = False
+            rec.category_ids = False
     
     @api.onchange('knowledge_ids','publish_workflow')
     def set_knwoledge_article(self):
@@ -112,17 +131,46 @@ class InfoKnowledgeResUserCount(models.Model):
 #     
 class InfoKnowledgeRating(models.Model):  
     _name = 'info.knowledge.rating'
-    _rec_name = 'article_id'
+    _rec_name = 'user_id'
  
     user_id = fields.Many2one('res.users','User', default=lambda self: self.env.user)
     rating_comment = fields.Text('Comment')    
     article_id = fields.Many2one('info.knowledge.knowledge',)
-#     rating_image = fields.Binary('Image', compute='_compute_rating_image')
+    rating_image = fields.Binary('Image', compute='_compute_rating_image')
     rating_text = fields.Selection([
-        ('satisfied', 'Satisfied'),
-        ('not_satisfied', 'Not satisfied'),
-        ('highly_dissatisfied', 'Highly dissatisfied'),
-        ('no_rating', 'No Rating yet')], string='Rating')
+    ('0', 'No Rating yet'),
+    ('1', 'Highly dissatisfied'),
+    ('2', 'dissatisfied'),
+    ('3', 'Not satisfied'),
+    ('4', 'Satisfied'),
+    ('5', 'Highly Satisfied')], string='Rating')
+
+
+    
+    def unlink(self):
+        for type in self:
+            if type.user_id != self.env.user:
+                raise UserError(_('You can delete only your rating.'))
+        return super(InfoKnowledgeRating, self).unlink()
+    
+    
+    @api.depends('rating_text')
+    def _compute_rating_image(self):
+        # Due to some new widgets, we may have ratings different from 0/1/5/10 (e.g. slide.channel review)
+        # Let us have some custom rounding while finding a better solution for images.
+        for rating in self:
+            rating_for_img = 0
+            if rating.rating_text == '5':
+                rating_for_img = 10
+            elif rating.rating_text == '3':
+                rating_for_img = 5
+            elif rating.rating_text == '1':
+                rating_for_img = 1
+            try:
+                image_path = get_resource_path('info_knowledge', 'static/src/img', 'rating_%s.png' % rating_for_img)
+                rating.rating_image = base64.b64encode(open(image_path, 'rb').read())
+            except (IOError, OSError):
+                rating.rating_image = False
 #     
 #     
     
@@ -139,6 +187,8 @@ class InfoKnowledge(models.Model):
                               "State", default='draft')
     parent_id = fields.Many2one('info.knowledge.knowledge','Parent')
     knowledge_base_id = fields.Many2one('info.knowledge.base','Knowledge base')
+    tags_ids = fields.Many2many('info.knowledge.tags')
+    category_ids = fields.Many2many('info.knowledge.category',string='Knowledge category')
     language_id = fields.Many2one('res.lang','Language')
     is_template = fields.Boolean('Is it a template', default=False) 
     is_instant_publish = fields.Boolean( default=False)   
@@ -147,8 +197,14 @@ class InfoKnowledge(models.Model):
     
     flag = fields.Integer(compute='compute_flag')
     flag_form = fields.Integer(compute='compute_flag_form')
-    flag2 = fields.Integer('Count')
+    flag2 = fields.Integer('Views')
     user_count_ids = fields.One2many('info.knowledge.users','knowledge_users_id')
+    rating_count = fields.Integer(compute='_compute_rating_count')
+    
+    def _compute_rating_count(self):
+        for rat in self:
+            res = self.env['info.knowledge.rating'].search_count([('article_id', '=', rat.id)])
+            rat.rating_count = res or 0
     
     def open_rating(self):
         return {
@@ -161,11 +217,8 @@ class InfoKnowledge(models.Model):
             'domain': [('article_id', '=', self.id)],
             }
     
-#     @api.model
-#     def rating_wizard(self, action_ref=None):
-#         if not action_ref:
-#             action_ref = 'info_knowledge.info_rating_wizard'
-#         return self.env.ref(action_ref).read()[0] 
+    is_rating = fields.Boolean( default=False) 
+    review_rating = fields.Integer(default=0)   
     
     def action_pass(self):
         pass
@@ -191,9 +244,17 @@ class InfoKnowledge(models.Model):
                 rec.is_like = False
                 rec.is_dislike = True
         self.is_dislike = True
-    
+        
     
     def compute_flag_form(self):
+#         print("wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww",self.env.user.id,self.id)
+#         print("ddddddddddddddddddddddddddddddddddddd",self._context)
+        rating_obj = self.env['info.knowledge.rating'].search([('user_id','=',self.env.user.id),('article_id','=',self.id)],limit=1)
+        if rating_obj:
+            self.is_rating = True
+        else:
+            self.is_rating = False
+        print("QQQQQQQQQQQQQQQQQQQQQQQQ",self._context)
 #         record.flag +=1
         self.flag2 += 1
         self.flag_form += 1
@@ -210,9 +271,12 @@ class InfoKnowledge(models.Model):
         
     
     def compute_flag(self):
+        print("aaaaaaaaaaaaaaa")
         for record in self:
             record.flag += 1
-            print("selfffffffffffffffffffffff111111111111",self.env.user)
+            context = dict(self.env.context or {})
+#             context['abc_text']=''
+            print("selfffffffffffffffffffffff111111111111",context)
             user = self.env.user
 #             f=0
             like = 0
@@ -229,28 +293,28 @@ class InfoKnowledge(models.Model):
                     record.is_dislike = rec.is_dislike
             record.like_count = like
             record.dislike_count = dislike
-#             if f == 0:
-#                 record.user_count_ids = [(0, 0,{'count':1,'user_id':user.id})]
-            print("selfffffffffffffffffffffff",record.flag)
-#     @api.depends('knowledge_base_id','knowledge_base_id.publish_workflow')
-#     def _compute_is_instant(self):
-#         for rec in self:
-#             print("sssssssssssssssssssssssssssssssssssssssssssssssssss")
-#         if self.knowledge_base_id:
-#             if self.knowledge_base_id.publish_workflow == 'instant':
-#                 self.is_instant = True
-        
-#     @api.model
-#     def _lang_get(self):
-#         return self.env['res.lang'].get_installed()
-#     
-#     lang = fields.Selection(_lang_get, string='Language', default=lambda self: self.env.lang)
+            rating_obj = self.env['info.knowledge.rating'].search([('article_id','=',record.id)])
+            a=0
+            b=0
+#             print("tttttttttttttttttt",rating_obj)
+            for rating in rating_obj:
+#                 print("1111111111111111111111",rating.rating_text)
+                if rating.rating_text != '0':
+                    a += int(rating.rating_text)
+                    b +=1
+            if b>0:
+                record.review_rating = a/b
+            else :
+                record.review_rating = 0
+            
 #     
     published = fields.Date('Published')
     valid_to = fields.Date('Valid to')
 
     short_desc = fields.Char('Short description')
     article = fields.Html('Article body')
+    article_text = fields.Text('Article text')
+    
     workflow = fields.Selection([('draft', ' Draft'),('review', 'In Review'),('published', 'Published')], "Workflow", default='draft')
     link = fields.Binary('Attachment link', attachment=True)
     disp = fields.Boolean('Display attachments')  
@@ -260,6 +324,30 @@ class InfoKnowledge(models.Model):
 #     @api.onchange('knowledge_base_id')
 #     def onchange_knowledge_base(self):
 #         print("sssssssssssssssssssssssssssssssssssssssssssssssssss")
+
+
+    @api.onchange('article')
+    def get_article_text(self):
+        if self.article:
+            soup = BeautifulSoup(self.article)
+            article = soup.get_text('\n')
+            text = article
+            a = 0
+            for i in range(len(article)):
+                if article[i] == "\n":
+                    print("AaaaaaAAaAAaAAAAaAaaaaaAaAaAAAAAAAAAaaaAAAaaaaaAAaaaaAAaaaAAAaaaAAaaaAAaaaAAa")
+                    print(a)
+                    a +=1
+                    if a > 3:
+                        text =  article[0:i] +'............'
+                        break
+            self.article_text = text
+#             with open(self.article, "r") as f:
+#                 for line in f.readlines():
+#                     print("!!!!!!!!!!!!!!!!!!!",line)
+#          
+        
+        
     @api.onchange('template_id')
     def get_template_values(self):
         self.short_desc = self.template_id.short_desc or False
