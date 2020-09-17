@@ -1,290 +1,259 @@
 <odoo>
-  <data>
-  <record id="view_infoknowledge_knowledge_kanban" model="ir.ui.view">
-        <field name="name">info.knowledge.knowledge.kanban</field>
-        <field name="model">info.knowledge.knowledge</field>
-        <field name="arch" type="xml">
-            <kanban class="o_emphasize_colors o_kanban_dashboard o_slide_kanban breadcrumb_item active">
-                <field name="number"/>
-                <field name="tags_ids"/>
-                <field name="short_desc"/>
-                <field name="article"/>
-                <field name="article_text"/>
-                <field name="flag"/>
-                <field name="flag2"/>
-				<field name="like_count"/>
-				<field name="dislike_count"/>
-                <templates>
-                <t t-name="kanban-box">
-                            <div t-attf-class="oe_kanban_card oe_kanban_global_click" style='width:600px'>
-                                <div class="o_dropdown_kanban dropdown">
-                                    <a role="button" class="dropdown-toggle o-no-caret btn" data-toggle="dropdown" href="#" aria-label="Dropdown menu" title="Dropdown menu">
-                                        <span class="fa fa-ellipsis-v" aria-hidden="false"/>
-                                    </a>
-                                    <div class="dropdown-menu" role="menu">
-<!--                                         <ul class="oe_kanban_colorpicker" data-field="color"/> -->
-                                        <t t-if="widget.deletable">
-                                            <a class="dropdown-item" role="menuitem" type="delete">Delete</a>
-                                        </t>
-                                        <a class="dropdown-item" role="menuitem" type="edit">
-                                            Edit
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="o_kanban_card_header">
-                                    <div class="o_kanban_card_header_title mb16">
-                                        <div class="o_primary">
-                                            <a type="edit" class="mr-auto">
-                                                <span><field name="number" class="o_primary"/></span>
-                                            </a>
-                                        </div>
-                                        <div>
-                                            <field name="tags_ids" widget="many2many_tags"/>
-                                        </div>
-<!--                                         <div> -->
-<!--                                             <field name="article_text"/> -->
-<!--                                         </div> -->
-                                    </div>
-                                </div>
-                                <div class="container o_kanban_card_content mt0">
-                                    <div class="row mb16">
-                                        <div class="col-9 o_kanban_primary_left">
-                                            <div class="col-8">
-                                            <field name="article_text" widget="text"/>
-                                            </div>
-<!--                                             <button class="btn btn-primary" name="open_website_url" type="object">View course</button> -->
-                                        </div>
-                                        <div class="col-3 o_kanban_primary_right">
-                                            <div class="d-flex">
-                                                <a name="open_rating" type="object" class="mr-auto"><field name="rating_count"/> reviews</a>
-                                                <span><field name="review_rating"/> / 5</span>
-                                            </div>
-                                            <div class="d-flex">
-                                                <span class="mr-auto"><label for="flag2" class="mb0">Views</label></span>
-                                                <field name="flag2" />
-                                            </div>
-<!--                                             <div class="d-flex" name="info_total_time"> -->
-<!--                                                 <span class="mr-auto"><label for="total_time" class="mb0">Duration</label></span> -->
-<!--                                                 <field name="total_time" widget="float_time"/> -->
-<!--                                             </div> -->
-                                        </div>
-                                    </div>
-                                    <div class="row mt3">
-                                        <div class="col-4 border-right">
-                            		<field name="user_id"/>
-                            		<field name="is_like" invisible='1'/>
-                            		<field name="is_dislike" invisible='1'/>
-                            		<field name="flag" invisible='1'/>
-<!--                                             <a name="action_redirect_to_members" type="object" class="d-flex flex-column align-items-center"> -->
-<!--                                                 <span class="font-weight-bold"><field name="members_count"/></span> -->
-<!--                                                 <span class="text-muted">Attendees</span> -->
-<!--                                             </a> -->
-                                        </div>
-                                        <div class="col-5 text-center border-right">
-			                                    <field name="published"/> -
-			                                    <field name="valid_to"/>
-<!--                                             <a name="action_redirect_to_done_members" type="object" class="d-flex flex-column align-items-center"> -->
-<!--                                                 <span class="font-weight-bold"><field name="members_done_count"/></span> -->
-<!--                                                 <span name="done_members_count_label" class="text-muted">Finished</span> -->
-<!--                                             </a> -->
-                                        </div>
-                                        <div class="col-3 text-center">
-                                            <button type="object" class="btn  fa fa-thumbs-o-up " name='action_like' 
-											attrs="{'invisible': [('is_like','!=', False)]}" />
-		                            		<button type="object" class="btn  fa fa-thumbs-up " name='action_pass'
-													attrs="{'invisible': [('is_like','=', False)]}" />
-		                					<field name="like_count"/>
-		                            		<button type="object" class="btn  fa fa-thumbs-o-down " name='action_dislike'
-													attrs="{'invisible': [('is_dislike','!=', False)]}"/>
-		                            		<button type="object" class="btn  fa fa-thumbs-down " name='action_pass'
-													attrs="{'invisible': [('is_dislike','=', False)]}"/>
-											<field name="dislike_count"/>
-<!--                                             <a name="action_view_slides" type="object" class="d-flex flex-column align-items-center"> -->
-<!--                                                 <span class="font-weight-bold"><field name="total_slides"/></span> -->
-<!--                                                 <span class="text-muted">Contents</span> -->
-<!--                                             </a> -->
-                                        </div>
-                                    </div>
-                                </div>
-                             </div>
-                        </t>
-<!--                     <t t-name="kanban-box"> -->
-<!--                         <div t-attf-class="oe_kanban_card oe_kanban_global_click" style='width:600px'> -->
-<!--                             <div class="row mb4"> -->
-<!--                                 <div class="col-8"> -->
-<!--                                     <strong> -->
-<!--                                         <field name="number"/> -->
-<!--                                     </strong> -->
-<!--                 					<field name="tags_ids"/> -->
-<!--                                 </div> -->
-<!--                             </div> -->
-<!--                             <div class="row"> -->
-<!--                                 <div class="col-8"> -->
-<!--                                     <strong> -->
-<!--                                         <field name="article_text"/> -->
-<!--                                     </strong> -->
-<!--                                 </div> -->
-<!-- 							</div> -->
-<!--                             <div class="row"> -->
-<!--                                 <div class="col-2"> -->
-<!--                                     <field name="published"/> -->
-<!--                                 </div> -->
-<!--                                 <div class="col-2"> -->
-<!--                                     <field name="valid_to"/> -->
-<!--                                 </div> -->
-                                
-<!--                             </div> -->
-<!--                             <div class="row"> -->
-<!--                                 <div class="col-7"> -->
-<!--                             		<field name="user_id"/> -->
-<!--                             		<field name="is_like" invisible='1'/> -->
-<!--                             		<field name="is_dislike" invisible='1'/> -->
-<!--                             		<field name="flag" invisible='1'/> -->
-<!--                             	</div> -->
-<!--                                 <div class="col-5"> -->
-<!--                             		<button type="object" class="btn  fa fa-eye " name='action_pass'> -->
-<!--                 					<field name="flag2"/></button> -->
-<!--                             		<button type="object" class="btn  fa fa-thumbs-o-up " name='action_like' -->
-<!-- 											attrs="{'invisible': [('is_like','!=', False)]}" /> -->
-<!--                             		<button type="object" class="btn  fa fa-thumbs-up " name='action_pass' -->
-<!-- 											attrs="{'invisible': [('is_like','=', False)]}" /> -->
-<!--                 					<field name="like_count"/> -->
-<!--                             		<button type="object" class="btn  fa fa-thumbs-o-down " name='action_dislike' -->
-<!-- 											attrs="{'invisible': [('is_dislike','!=', False)]}"/> -->
-<!--                             		<button type="object" class="btn  fa fa-thumbs-down " name='action_pass' -->
-<!-- 											attrs="{'invisible': [('is_dislike','=', False)]}"/> -->
-<!-- 									<field name="dislike_count"/> -->
-<!--                             		<button type="object" class="btn  fa fa-star-o " name='action_pass'> -->
-<!--                 					<field name="review_rating"/>/5</button> -->
-<!--                                 </div> -->
-<!--                             </div> -->
-<!--                         </div> -->
-<!--                     </t> -->
-                </templates>
-            </kanban>
-        </field>
-    </record>
-  <record model="ir.ui.view" id="view_infoknowledge_knowledge_form">
+	<data>
+		<record id="view_infoknowledge_knowledge_kanban"
+			model="ir.ui.view">
+			<field name="name">info.knowledge.knowledge.kanban</field>
+			<field name="model">info.knowledge.knowledge</field>
+			<field name="arch" type="xml">
+				<kanban
+					class="o_emphasize_colors o_kanban_dashboard o_slide_kanban breadcrumb_item active">
+					<field name="number" />
+					<field name="tags_ids" />
+					<field name="short_desc" />
+					<field name="article" />
+					<field name="article_text" />
+					<field name="flag" />
+					<field name="flag2" />
+					<field name="like_count" />
+					<field name="dislike_count" />
+					<templates>
+						<t t-name="kanban-box">
+							<div t-attf-class="oe_kanban_card oe_kanban_global_click"
+								style='width:600px'>
+								<div class="o_dropdown_kanban dropdown">
+									<a role="button" class="dropdown-toggle o-no-caret btn"
+										data-toggle="dropdown" href="#" aria-label="Dropdown menu"
+										title="Dropdown menu">
+										<span class="fa fa-ellipsis-v" aria-hidden="false" />
+									</a>
+									<div class="dropdown-menu" role="menu">
+										<!-- <ul class="oe_kanban_colorpicker" data-field="color"/> -->
+										<t t-if="widget.deletable">
+											<a class="dropdown-item" role="menuitem" type="delete">Delete</a>
+										</t>
+										<a class="dropdown-item" role="menuitem" type="edit">
+											Edit
+										</a>
+									</div>
+								</div>
+								<div class="o_kanban_card_header">
+									<div class="o_kanban_card_header_title mb16">
+										<div class="o_primary">
+											<a type="edit" class="mr-auto">
+												<span>
+													<field name="number" class="o_primary" />
+												</span>
+											</a>
+										</div>
+										<div>
+											<field name="tags_ids" widget="many2many_tags" />
+										</div>
+										<!-- <div> -->
+										<!-- <field name="article_text"/> -->
+										<!-- </div> -->
+									</div>
+								</div>
+								<div class="container o_kanban_card_content mt0">
+									<div class="row mb16">
+										<div class="col-9 o_kanban_primary_left">
+											<div class="col-8">
+												<field name="article_text" widget="text" />
+											</div>
+											<!-- <button class="btn btn-primary" name="open_website_url" type="object">View 
+												course</button> -->
+										</div>
+										<div class="col-3 o_kanban_primary_right">
+											<div class="d-flex">
+												<a name="open_rating" type="object" class="mr-auto">
+													<field name="rating_count" />
+													reviews
+												</a>
+												<span>
+													<field name="review_rating" />
+													/ 5
+												</span>
+											</div>
+											<div class="d-flex">
+												<span class="mr-auto">
+													<label for="flag2" class="mb0">Views</label>
+												</span>
+												<field name="flag2" />
+											</div>
+											<!-- <div class="d-flex" name="info_total_time"> -->
+											<!-- <span class="mr-auto"><label for="total_time" class="mb0">Duration</label></span> -->
+											<!-- <field name="total_time" widget="float_time"/> -->
+											<!-- </div> -->
+										</div>
+									</div>
+									<div class="row mt3">
+										<div class="col-4 border-right">
+											<field name="user_id" />
+											<field name="is_like" invisible='1' />
+											<field name="is_dislike" invisible='1' />
+											<field name="flag" invisible='1' />
+											<!-- <a name="action_redirect_to_members" type="object" class="d-flex 
+												flex-column align-items-center"> -->
+											<!-- <span class="font-weight-bold"><field name="members_count"/></span> -->
+											<!-- <span class="text-muted">Attendees</span> -->
+											<!-- </a> -->
+										</div>
+										<div class="col-5 text-center border-right">
+											<field name="published" />
+											-
+											<field name="valid_to" />
+											<!-- <a name="action_redirect_to_done_members" type="object" class="d-flex 
+												flex-column align-items-center"> -->
+											<!-- <span class="font-weight-bold"><field name="members_done_count"/></span> -->
+											<!-- <span name="done_members_count_label" class="text-muted">Finished</span> -->
+											<!-- </a> -->
+										</div>
+										<div class="col-3 text-center">
+											<button type="object" class="btn  fa fa-thumbs-o-up "
+												name='action_like'
+												attrs="{'invisible': [('is_like','!=', False)]}" />
+											<button type="object" class="btn  fa fa-thumbs-up "
+												name='action_pass'
+												attrs="{'invisible': [('is_like','=', False)]}" />
+											<field name="like_count" />
+											<button type="object"
+												class="btn  fa fa-thumbs-o-down " name='action_dislike'
+												attrs="{'invisible': [('is_dislike','!=', False)]}" />
+											<button type="object" class="btn  fa fa-thumbs-down "
+												name='action_pass'
+												attrs="{'invisible': [('is_dislike','=', False)]}" />
+											<field name="dislike_count" />
+											<!-- <a name="action_view_slides" type="object" class="d-flex 
+												flex-column align-items-center"> -->
+											<!-- <span class="font-weight-bold"><field name="total_slides"/></span> -->
+											<!-- <span class="text-muted">Contents</span> -->
+											<!-- </a> -->
+										</div>
+									</div>
+								</div>
+							</div>
+						</t>
+					</templates>
+				</kanban>
+			</field>
+		</record>
+		<record model="ir.ui.view"
+			id="view_infoknowledge_knowledge_form">
 			<field name="name">info.knowledge.knowledge.form</field>
 			<field name="model">info.knowledge.knowledge</field>
 			<field name="arch" type="xml">
 				<form string="Info Knowledge">
 					<header>
-						<field name="is_instant_publish" invisible='1'/>
-						<field name="is_instant_retire" invisible='1'/>
-						<button name="set_review" string="Review"
-							type="object" class="oe_highlight"
+						<field name="is_instant_publish" invisible='1' />
+						<field name="is_instant_retire" invisible='1' />
+						<button name="set_review" string="Review" type="object"
+							class="oe_highlight"
 							attrs="{'invisible': ['|',('state','!=','draft'),('is_instant_publish','!=',False)]}" />
-						<button name="set_publish" string="Publish"
-							type="object" class="oe_highlight"
-							attrs="{'invisible': ['|',('state','!=','draft'),('is_instant_publish','=',False)]}" 
-							/>
-						<button name="set_publish" string="Publish"
-							type="object" class="oe_highlight"
-							attrs="{'invisible': ['|',('state','!=','review'),('is_instant_publish','!=',False)]}" 
-							/>
+						<button name="set_publish" string="Publish" type="object"
+							class="oe_highlight"
+							attrs="{'invisible': ['|',('state','!=','draft'),('is_instant_publish','=',False)]}" />
+						<button name="set_publish" string="Publish" type="object"
+							class="oe_highlight"
+							attrs="{'invisible': ['|',('state','!=','review'),('is_instant_publish','!=',False)]}" />
 						<button name="set_pend_retire" string="Pending Retirement"
-							type="object" class="oe_highlight"
-							states='published' attrs="{'invisible': ['|',('is_instant_retire','!=',False)]}"/>
+							type="object" class="oe_highlight" states='published'
+							attrs="{'invisible': ['|',('is_instant_retire','!=',False)]}" />
 						<button name="set_retire" string="Confirm Retirement"
-							type="object" class="oe_highlight"
-							 states='published' attrs="{'invisible': ['|',('is_instant_retire','=',False)]}"/>
+							type="object" class="oe_highlight" states='published'
+							attrs="{'invisible': ['|',('is_instant_retire','=',False)]}" />
 						<button name="set_retire" string="Confirm Retirement"
-							type="object" class="oe_highlight"
-							 states='retirement' attrs="{'invisible': ['|',('is_instant_retire','!=',False)]}"/>
+							type="object" class="oe_highlight" states='retirement'
+							attrs="{'invisible': ['|',('is_instant_retire','!=',False)]}" />
 						<button name="set_draft" string="Set to draft"
-							type="object"
-							attrs="{'invisible': [('state','=','draft')]}" />
-						<field name="state"  widget='statusbar'/>
+							type="object" attrs="{'invisible': [('state','=','draft')]}" />
+						<field name="state" widget='statusbar' />
 					</header>
 					<sheet>
-					<div class="oe_button_box" name="button_box">
-							<button class="oe_stat_button" disabled="disabled" icon="fa-eye">
-							<field name="flag2" readonly='1'/>Views
+						<div class="oe_button_box" name="button_box">
+							<button class="oe_stat_button" disabled="disabled"
+								icon="fa-eye">
+								<field name="flag2" readonly='1' />
+								Views
 							</button>
-							<button class="oe_stat_button" string="Add / Edit Review" 
-								 name="%(action_view_rating_wizard)d" type="action" icon="fa-pencil">
+							<button class="oe_stat_button" string="Add / Edit Review"
+								name="%(action_view_rating_wizard)d" type="action"
+								icon="fa-pencil">
 							</button>
-<!-- 							<button class="oe_stat_button" string="Edit Review"  -->
-<!-- 								 name="%(action_view_rating_wizard)d" type="action" icon="fa-pencil"> -->
-<!-- 							</button> -->
-							<button class="oe_stat_button"
-								name="open_rating" type="object" icon="fa-star">
-								<field name="rating_count"/>Reviews
-								
+							<button class="oe_stat_button" name="open_rating"
+								type="object" icon="fa-star">
+								<field name="rating_count" />
+								Reviews
+
 							</button>
-					</div>
-                    <div class="oe_title" attrs="{'invisible': [('number', '=', 'false')]}">
-<!--                         <label for="info_asset_name_seq"  class="oe_edit_only"/> -->
-                        <h1>
-                            <field name="number" readonly='1'/>
-                        </h1>
-                    </div>
-                        <div>
-                            <field name="tags_ids" widget="many2many_tags" placeholder="Tags"/>
-                        </div>
+						</div>
+						<div class="oe_title"
+							attrs="{'invisible': [('number', '=', 'false')]}">
+							<h1>
+								<field name="number" readonly='1' />
+							</h1>
+						</div>
+						<div>
+							<field name="tags_ids" widget="many2many_tags"
+								placeholder="Tags" />
+						</div>
 						<group>
 							<group>
-								<field name="category_ids" widget="many2many_tags" readonly='1' 
-									attrs="{'invisible': [('category_ids', '=', False)]}"/>
-								<field name="knowledge_base_id" readonly='1' attrs="{'invisible': [('knowledge_base_id', '=', False)]}"/>
-								<field name="language_id"/>
-								<field name="is_template"/>
-								<field name="template_id" domain="[('is_template', '=', True),('id','!=',id)]" attrs="{'invisible': [('is_template', '!=', False)]}"/>
+								<field name="category_ids" widget="many2many_tags"
+									readonly='1'
+									attrs="{'invisible': [('category_ids', '=', False)]}" />
+								<field name="knowledge_base_id" readonly='1'
+									attrs="{'invisible': [('knowledge_base_id', '=', False)]}" />
+								<field name="language_id" />
+								<field name="is_template" />
+								<field name="template_id"
+									domain="[('is_template', '=', True),('id','!=',id)]"
+									attrs="{'invisible': [('is_template', '!=', False)]}" />
 							</group>
 							<group>
-								<field name="published" required='1'/>
+								<field name="published" required='1' />
 								<field name="valid_to" required='1' />
-                                <field name="flag" invisible='1'/>
-                                <field name="flag_form" invisible='1'/>
+								<field name="flag" invisible='1' />
+								<field name="flag_form" invisible='1' />
 							</group>
 							<group>
-								<field name="short_desc"/>
-								<field name="parent_id" domain="[('knowledge_base_id', '=', knowledge_base_id),('id','!=',id)]"/>
-								<field name="is_like"  invisible='1'/>
-								<field name="is_dislike"  invisible='1'/>
+								<field name="short_desc" />
+								<field name="parent_id"
+									domain="[('knowledge_base_id', '=', knowledge_base_id),('id','!=',id)]" />
+								<field name="is_like" invisible='1' />
+								<field name="is_dislike" invisible='1' />
 							</group>
 							<group>
-								<field name="link"/>
-								<field name="workflow" readonly='1'/>
-								<field name="article_text" invisible='1'/>
+								<field name="link" />
+								<field name="workflow" readonly='1' />
+								<field name="article_text" invisible='1' />
 							</group>
-							</group>
-							<group>
-<!-- 								<field name="article" /> -->
-<!-- 								<field name="user_count_ids" readonly='1'> -->
-<!-- 									<tree string="user_count_ids" editable='bottom'> -->
-<!-- 										<field name="user_id" /> -->
-<!-- 										<field name="count" /> -->
-<!-- 										<field name="is_like"  invisible='1'/> -->
-<!-- 										<field name="is_dislike" invisible='1' /> -->
-<!-- 									</tree> -->
-<!-- 								</field> -->
 						</group>
-                    	<notebook colspan="4">
-                         <page string="Article body">
-								<field name="article" required='1'/>
-                         </page>
-                         <page string="Statistics">
-							<group class='col-6'>
-                                <field name="flag2" readonly='1'/>
-								<field name="user_count_ids" readonly='1'>
-									<tree string="user_count_ids" editable='bottom'>
-										<field name="user_id" />
-										<field name="count" />
-										<field name="is_like"  invisible='1'/>
-										<field name="is_dislike" invisible='1' />
-									</tree>
-								</field>
-							</group>
-                         </page>
-                        </notebook>
+						<group>
+						</group>
+						<notebook colspan="4">
+							<page string="Article body">
+								<field name="article" required='1' />
+							</page>
+							<page string="Statistics">
+								<group class='col-6'>
+									<field name="flag2" readonly='1' />
+									<field name="user_count_ids" readonly='1'>
+										<tree string="user_count_ids" editable='bottom'>
+											<field name="user_id" />
+											<field name="count" />
+											<field name="is_like" invisible='1' />
+											<field name="is_dislike" invisible='1' />
+										</tree>
+									</field>
+								</group>
+							</page>
+						</notebook>
 					</sheet>
 				</form>
 			</field>
 		</record>
 
-		<record model="ir.ui.view" id="view_infoknowledge_knowledge_tree">
+		<record model="ir.ui.view"
+			id="view_infoknowledge_knowledge_tree">
 			<field name="name">info.knowledge.knowledge.tree</field>
 			<field name="model">info.knowledge.knowledge</field>
 			<field name="arch" type="xml">
@@ -309,85 +278,78 @@
 				</p>
 			</field>
 		</record>
-		
-		
-  <record model="ir.ui.view" id="view_infoknowledge_base_form">
+
+
+		<record model="ir.ui.view" id="view_infoknowledge_base_form">
 			<field name="name">info.knowledge.base.form</field>
 			<field name="model">info.knowledge.base</field>
 			<field name="arch" type="xml">
 				<form string="Info Knowledge">
 					<header>
-						<button name="action_done" string="Done"
-							type="object" class="oe_highlight"
-							states='draft'/>
+						<button name="action_done" string="Done" type="object"
+							class="oe_highlight" states='draft' />
 						<button name="action_draft" string="Set to Draft"
-							type="object"
-							states='done'/>
-					<field name='state' widget='statusbar'/>
+							type="object" states='done' />
+						<field name='state' widget='statusbar' />
 					</header>
 					<sheet>
-<!-- 					<div class="oe_button_box" name="button_box"> -->
-<!-- 							<button name="toggle_active" type="object" class="oe_stat_button" icon="fa-archive" -->
-<!-- 							groups="info_knowledge.knowledge_manager" > -->
-<!-- 								<field name="active" invisible='1'  widget="boolean_toggle" options='{"terminology": "archive"}'/> -->
-<!-- 							</button> -->
-<!-- 					</div> -->
-					<div class="oe_button_box" name="button_box">
-                            <button class="oe_stat_button" type="object" name="toggle_active" icon="fa-archive">
-                                <field name="active" invisible='1' widget="boolean_toggle" options='{"terminology": "archive"}'/>
-                                <span attrs="{'invisible': [('active', '!=', True)]}" > Archive</span>
-                                <span attrs="{'invisible': [('active', '=', True)]}" > Activate</span>
-                            </button>
-<!-- 							<button name="toggle_active" type="object" class="oe_stat_button" icon="fa-archive" -->
-<!-- 							groups="info_knowledge.knowledge_manager" > -->
-<!-- 								<field name="active" invisible='1'  widget="boolean_toggle" options='{"terminology": "archive"}'/> -->
-<!-- 							</button> -->
-					</div>
-                    <widget name="web_ribbon" title="Archived" bg_color="bg-danger" attrs="{'invisible': [('active', '=', True)]}"/>
-                    <widget name="web_ribbon" title="Active" bg_color="bg-info" attrs="{'invisible': [('active', '!=', True)]}"/>
-                    
-				<group>
-                    <div class="oe_title">	
-<!--                         <h1> -->
-<!--                             <field name="number" readonly='1'/> -->
-<!--                         </h1> -->
-	            	<field name="icon_image" widget="image" class="oe_left oe_avatar" attrs="{'readonly': [('state','=','done')]}"/>
-                       
-                        <h1><field name="title" placeholder="Title" required='1' attrs="{'readonly': [('state','=','done')]}"/></h1>
-                    </div>
-                </group>
-<!--                     <div class="oe_title" attrs="{'invisible': [('number', '=', 'false')]}"> -->
-<!--                         <label for="info_asset_name_seq"  class="oe_edit_only"/> -->
-<!--                         <h1> -->
-<!--                             <field name="number" readonly='1'/> -->
-<!--                         </h1> -->
-<!--                     </div> -->
+						<div class="oe_button_box" name="button_box">
+							<button class="oe_stat_button" type="object"
+								name="toggle_active" icon="fa-archive">
+								<field name="active" invisible='1' widget="boolean_toggle"
+									options='{"terminology": "archive"}' />
+								<span attrs="{'invisible': [('active', '!=', True)]}">
+									Archive
+								</span>
+								<span attrs="{'invisible': [('active', '=', True)]}">
+									Activate
+								</span>
+							</button>
+						</div>
+						<widget name="web_ribbon" title="Archived"
+							bg_color="bg-danger"
+							attrs="{'invisible': [('active', '=', True)]}" />
+						<widget name="web_ribbon" title="Active" bg_color="bg-info"
+							attrs="{'invisible': [('active', '!=', True)]}" />
+
 						<group>
-<!-- 							<group> -->
-<!-- 								<field name="valid_art" required='1' /> -->
-<!-- 							</group> -->
+							<div class="oe_title">
+								<field name="icon_image" widget="image"
+									class="oe_left oe_avatar"
+									attrs="{'readonly': [('state','=','done')]}" />
+
+								<h1>
+									<field name="title" placeholder="Title" required='1'
+										attrs="{'readonly': [('state','=','done')]}" />
+								</h1>
+							</div>
+						</group>
+						<group>
 							<group>
-								<field name="publish_workflow" required='1' attrs="{'readonly': [('state','=','done')]}"/>
-								<field name="retir_flow" required='1' attrs="{'readonly': [('state','=','done')]}"/>
-							</group>
-<!-- 							<group> -->
-<!-- 								<field name="is_active"/> -->
-<!-- 							</group> -->
-							<group>
-								<field name="knowledge_ids" widget="many2many_tags" required='1'
-								 attrs="{'readonly': [('state','=','done')]}"/>
-								<field name="category_ids" widget="many2many_tags" required='1'
-								 attrs="{'readonly': [('state','=','done')]}"/>
-								<field name="related_asset_ids" widget="many2many_tags" attrs="{'readonly': [('state','=','done')]}"/>
-							</group>
-							<group>
-								<field name="read_group_ids"  widget="many2many_tags" attrs="{'readonly': [('state','=','done')]}"/>
+								<field name="publish_workflow" required='1'
+									attrs="{'readonly': [('state','=','done')]}" />
+								<field name="retir_flow" required='1'
+									attrs="{'readonly': [('state','=','done')]}" />
 							</group>
 							<group>
-								<field name="contibute_groups_ids"  widget="many2many_tags" attrs="{'readonly': [('state','=','done')]}"/>
+								<field name="knowledge_ids" widget="many2many_tags"
+									required='1' attrs="{'readonly': [('state','=','done')]}" />
+								<field name="category_ids" widget="many2many_tags"
+									required='1' attrs="{'readonly': [('state','=','done')]}" />
+								<field name="related_asset_ids" widget="many2many_tags"
+									attrs="{'readonly': [('state','=','done')]}" />
 							</group>
 							<group>
-								<field name="desc" attrs="{'readonly': [('state','=','done')]}"/>   
+								<field name="read_group_ids" widget="many2many_tags"
+									attrs="{'readonly': [('state','=','done')]}" />
+							</group>
+							<group>
+								<field name="contibute_groups_ids" widget="many2many_tags"
+									attrs="{'readonly': [('state','=','done')]}" />
+							</group>
+							<group>
+								<field name="desc"
+									attrs="{'readonly': [('state','=','done')]}" />
 							</group>
 						</group>
 					</sheet>
@@ -420,9 +382,10 @@
 				</p>
 			</field>
 		</record>
-		
-		
-  <record model="ir.ui.view" id="view_infoknowledge_category_form">
+
+
+		<record model="ir.ui.view"
+			id="view_infoknowledge_category_form">
 			<field name="name">info.knowledge.category.form</field>
 			<field name="model">info.knowledge.category</field>
 			<field name="arch" type="xml">
@@ -430,11 +393,11 @@
 					<sheet>
 						<group>
 							<group>
-								<field name="name" required='1'/>
+								<field name="name" required='1' />
 								<field name="desc" required='1' />
 							</group>
 							<group>
-								<field name="patent_id" domain="[('id','!=',id)]"/>
+								<field name="patent_id" domain="[('id','!=',id)]" />
 							</group>
 						</group>
 					</sheet>
@@ -442,7 +405,8 @@
 			</field>
 		</record>
 
-		<record model="ir.ui.view" id="view_infoknowledge_category_tree">
+		<record model="ir.ui.view"
+			id="view_infoknowledge_category_tree">
 			<field name="name">info.knowledge.category.tree</field>
 			<field name="model">info.knowledge.category</field>
 			<field name="arch" type="xml">
@@ -466,9 +430,10 @@
 				</p>
 			</field>
 		</record>
-		
-		
-  <record model="ir.ui.view" id="view_infoknowledge_feedback_form">
+
+
+		<record model="ir.ui.view"
+			id="view_infoknowledge_feedback_form">
 			<field name="name">info.knowledge.feedback.form</field>
 			<field name="model">info.knowledge.feedback</field>
 			<field name="arch" type="xml">
@@ -476,28 +441,31 @@
 					<sheet>
 						<group>
 							<group>
-								<field name="created_date" required='1'/>
+								<field name="created_date" required='1' />
 								<field name="article_id" required='1' />
-								<field name="user_id"/>
+								<field name="user_id" />
 							</group>
 							<group>
-								<field name="useful" attrs="{'required': [('is_flagged', '!=', False)],
-															'readonly': [('is_flagged', '=', False)]}"/>
-								<field name="is_flagged" readonly='1'/>
+								<field name="useful"
+									attrs="{'required': [('is_flagged', '!=', False)],
+															'readonly': [('is_flagged', '=', False)]}" />
+								<field name="is_flagged" readonly='1' />
 							</group>
 						</group>
-							<group class='col-12'>
-								<field name="comment" required='1'/>
-								<field name="work_notes" attrs="{'required': [('is_flagged', '!=', False)],
-																'readonly': [('is_flagged', '=', False)]}"/>
-							</group>
+						<group class='col-12'>
+							<field name="comment" required='1' />
+							<field name="work_notes"
+								attrs="{'required': [('is_flagged', '!=', False)],
+																'readonly': [('is_flagged', '=', False)]}" />
+						</group>
 					</sheet>
 				</form>
 			</field>
 		</record>
 
 
-		<record model="ir.ui.view" id="view_infoknowledge_feedback_tree">
+		<record model="ir.ui.view"
+			id="view_infoknowledge_feedback_tree">
 			<field name="name">info.knowledge.feedback.tree</field>
 			<field name="model">info.knowledge.feedback</field>
 			<field name="arch" type="xml">
@@ -520,40 +488,32 @@
 				</p>
 			</field>
 		</record>
-		
-		
-  <record model="ir.ui.view" id="view_infoknowledge_rating_form">
+
+
+		<record model="ir.ui.view" id="view_infoknowledge_rating_form">
 			<field name="name">info.knowledge.rating.form</field>
 			<field name="model">info.knowledge.rating</field>
 			<field name="arch" type="xml">
-				<form string="Info Knowledge rating" create="false" edit='false'>
+				<form string="Info Knowledge rating" create="false"
+					edit='false'>
 					<sheet>
 						<group>
 							<group>
 								<field name="rating_text" required='1' />
-								<field name="rating_comment" required='1'/>
+								<field name="rating_comment" required='1' />
 								<field name="user_id" readonly='1' />
 							</group>
 							<group>
 								<div colspan="2" class="text-center">
-                                    <field name="rating_image" widget='image'/>
-                                    <div class="mt4">
-                                        <strong><field name="rating_text"/></strong>
-                                    </div>
-                                </div>
-<!-- 								<field name="rating_image" widget='image' readonly='1'/> -->
+									<field name="rating_image" widget='image' />
+									<div class="mt4">
+										<strong>
+											<field name="rating_text" />
+										</strong>
+									</div>
+								</div>
 							</group>
-<!-- 							<group> -->
-<!-- 								<field name="useful" attrs="{'required': [('is_flagged', '!=', False)], -->
-<!-- 															'readonly': [('is_flagged', '=', False)]}"/> -->
-<!-- 								<field name="is_flagged" readonly='1'/> -->
-<!-- 							</group> -->
-<!-- 						</group> -->
-<!-- 							<group class='col-12'> -->
-<!-- 								<field name="comment" required='1'/> -->
-<!-- 								<field name="work_notes" attrs="{'required': [('is_flagged', '!=', False)], -->
-<!-- 																'readonly': [('is_flagged', '=', False)]}"/> -->
-							</group>
+						</group>
 					</sheet>
 				</form>
 			</field>
@@ -584,7 +544,7 @@
 				</p>
 			</field>
 		</record>
-		
-		
-  </data>
+
+
+	</data>
 </odoo>

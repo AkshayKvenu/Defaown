@@ -2,7 +2,7 @@
 
 
 from odoo import models, fields, api, _
-from odoo.exceptions import UserErro
+from odoo.exceptions import UserError
 
 
 class InfoKnowledgeTags(models.Model):
